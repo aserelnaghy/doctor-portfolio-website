@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import LanguageToggle from "./LanguageToggle";
 
 export default function Header() {
   return (
@@ -11,6 +12,9 @@ export default function Header() {
         <NavLink to="/blog">Blog</NavLink>
         <NavLink to="/faq">FAQ</NavLink>
         <NavLink to="/contact">Contact</NavLink>
+        <div style={{ marginLeft: "auto" }}>
+          <LanguageToggle />
+        </div>
       </nav>
     </header>
   );
