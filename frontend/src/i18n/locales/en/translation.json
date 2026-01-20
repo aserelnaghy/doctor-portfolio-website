@@ -1,0 +1,14 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "services": "Services",
+        "stories": "Patient Stories",
+        "blog": "Blog",
+        "faq": "FAQ",
+        "contact": "Contact"
+    },
+    "common": {
+        "language": "Language"
+    }
+}
