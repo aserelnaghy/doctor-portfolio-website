@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import "./i18n"
+import "./i18n";
+
 
 import LayoutShell from "./layouts/LayoutShell";
 
