@@ -1,11 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  /* Fonts */
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-sans-ar: Cairo, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Brand colors (from logo) */
+  --color-brand: 2 54 81;        /* #023651 */
+  --color-brand-900: 1 12 55;    /* #010C37 */
+
+  /* Neutrals (clean medical) */
+  --color-bg: 255 255 255;
+  --color-surface: 248 250 252;
+  --color-text: 15 23 42;
+  --color-muted: 100 116 139;
+  --color-border: 226 232 240;
+
+  /* Status */
+  --color-accent: 34 197 94;
+  --color-danger: 239 68 68;
+
+  /* Radius */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.10);
+
+  /* Spacing (8px grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Typography scale */
+  --text-h1: 40px;
+  --text-h2: 32px;
+  --text-h3: 24px;
+  --text-body: 16px;
+  --text-small: 14px;
+
+  --lh-tight: 1.15;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.75;
 }
 
-html[dir='rtl'] body {
-    font-family: Cairo, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+/* Default font + base colors */
+html,
+body {
+  font-family: var(--font-sans);
+  color: rgb(var(--color-text));
+  background: rgb(var(--color-bg));
+}
+
+/* Arabic font when dir=rtl */
+html[dir="rtl"] body {
+  font-family: var(--font-sans-ar);
 }
