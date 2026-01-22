@@ -1,3 +1,754 @@
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
+import { getHomeContent, getSiteContent } from "../content";
+
+import Section from "../components/ui/Section";
+import Container from "../components/ui/Container";
+import Grid from "../components/common/Grid";
+import Card from "../components/ui/Card";
+import Button from "../components/ui/Button";
+
+import Reveal from "../components/common/Reveal";
+import Stagger, { StaggerItem } from "../components/common/Stagger";
+
 export default function Home() {
-  return <h1>Home</h1>;
+  const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir?.() || (i18n.language?.startsWith("ar") ? "rtl" : "ltr");
+  const isRTL = dir === "rtl";
+
+  const { site, home } = useMemo(() => {
+    const lang = i18n.language || "en";
+    return { site: getSiteContent(lang), home: getHomeContent(lang) };
+  }, [i18n.language]);
+
+  const phoneDisplay = site.phoneDisplay || site.phoneTel || "";
+  const phoneTel = (site.phoneTel || phoneDisplay || "").replace(/\s+/g, "");
+
+  const callNow = () => {
+    if (!phoneTel) return;
+    window.location.href = `tel:${phoneTel}`;
+  };
+
+  const hero = home?.hero || {};
+  const heroKicker =
+    hero.kicker || "DIABETIC FOOT CARE | WOUND CARE | LIMB PRESERVATION";
+  const heroTitle = hero.title || "";
+  const heroSubtitle = hero.subtitle || "";
+  const heroBullets = (hero.bullets || []).slice(0, 3);
+  const heroStats = (hero.stats || []).slice(0, 3);
+
+  const heroPrimaryLabel = t("common.callNow", "Call now");
+  const heroSecondaryLabel = t("common.viewServices", "View services");
+
+  const heroImgSrc = hero?.image || hero?.imageUrl || "";
+  const heroImgAlt = hero?.imageAlt || "Doctor";
+  const trustItems = home?.hero?.trustItems || [];
+
+  return (
+    <main className={isRTL ? "text-right" : "text-left"}>
+      {/* HERO */}
+      <section className="relative overflow-hidden text-white -mt-16 sm:-mt-20 pt-16 sm:pt-20">
+        {/* base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-900 via-[#0b2f66] to-[#071a38]" />
+
+        {/* overlays */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/7 via-transparent to-black/35" />
+        <div className="pointer-events-none absolute -top-48 -left-48 h-[640px] w-[640px] rounded-full bg-brand/25 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-56 -right-56 h-[720px] w-[720px] rounded-full bg-accent/20 blur-3xl" />
+
+        {/* tone down on mobile */}
+        <div className="pointer-events-none absolute inset-0 hero-bg opacity-50 sm:opacity-70" />
+
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.10]"
+          style={{
+            backgroundImage:
+              "linear-gradient(135deg, rgba(255,255,255,0.22) 0, rgba(255,255,255,0.22) 1px, transparent 1px, transparent 18px)",
+            backgroundSize: "18px 18px",
+          }}
+        />
+
+        <div
+          className={[
+            "pointer-events-none absolute inset-y-0 w-[52%] min-w-[520px]",
+            isRTL ? "left-0" : "right-0",
+          ].join(" ")}
+        >
+          {heroImgSrc ? (
+            <img
+              src={heroImgSrc}
+              alt={heroImgAlt}
+              className={[
+                "absolute bottom-0 h-[92%] w-auto max-w-none object-contain",
+                isRTL ? "left-0" : "right-0",
+              ].join(" ")}
+            />
+          ) : null}
+        </div>
+
+        <Container className="relative">
+          {/* keep hero compact on mobile */}
+          <div className="min-h-[82vh] sm:min-h-[78vh] pt-10 sm:pt-14 pb-20 sm:pb-28">
+            <Grid cols={2} gap="lg" className="items-start">
+              {/* LEFT */}
+              <div className="max-w-[620px] pt-4 sm:pt-6">
+                {/* Kicker: smaller + lighter + more spacing */}
+                <Reveal>
+                  <div className="text-[11px] sm:text-[12px] tracking-[0.25em] uppercase text-white/60">
+                    {heroKicker}
+                  </div>
+                </Reveal>
+
+                {/* Title: bolder */}
+                <Reveal delay={0.06} y={24}>
+                  <h1 className="mt-4 text-[46px] sm:text-[60px] leading-[1.02] font-bold">
+                    {heroTitle}
+                  </h1>
+                </Reveal>
+
+                {/* Subtitle: narrower */}
+                <Reveal delay={0.14} y={18}>
+                  <p className="mt-4 text-body text-white/75 leading-[1.7] max-w-[520px]">
+                    {heroSubtitle}
+                  </p>
+                </Reveal>
+
+                {/* bullets: delayed slightly to guide reading order */}
+                {heroBullets.length > 0 ? (
+                  <Stagger className="mt-6">
+                    <ul className="space-y-3 text-body text-white/85">
+                      {heroBullets.map((b, idx) => (
+                        <StaggerItem key={idx}>
+                          <li className="flex gap-3">
+                            <span className="mt-[10px] h-2.5 w-2.5 rotate-45 rounded-[2px] bg-accent shrink-0" />
+                            <span>{b}</span>
+                          </li>
+                        </StaggerItem>
+                      ))}
+                    </ul>
+                  </Stagger>
+                ) : null}
+
+                {/* CTA: ensure 44px tap targets */}
+                <Reveal delay={0.22} y={16}>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Button
+                      onClick={callNow}
+                      className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-accent hover:bg-accent/90 text-white shadow-sm min-h-[44px]"
+                    >
+                      {heroPrimaryLabel}
+                    </Button>
+
+                    <Button
+                      onClick={() => navigate("/services")}
+                      className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/15 min-h-[44px]"
+                    >
+                      {heroSecondaryLabel}
+                    </Button>
+                  </div>
+                </Reveal>
+
+                {/* Trust strip (new) */}
+                <Reveal delay={0.28} y={14}>
+                  <div className="mt-8 flex flex-wrap gap-3 text-[12px] text-white/75">
+                    {trustItems.map((it, idx) => (
+                      <div
+                        key={idx}
+                        className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                        <span className="font-semibold text-white/85">
+                          {it.value}
+                        </span>
+                        <span className="text-white/65">{it.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </Reveal>
+
+                {/* stats */}
+                {heroStats.length > 0 ? (
+                  <Reveal delay={0.34} y={14}>
+                    <div className="mt-10">
+                      <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                      <Stagger className="mt-6 grid grid-cols-3 gap-6 sm:gap-10">
+                        {heroStats.map((s, idx) => (
+                          <StaggerItem key={idx} y={10}>
+                            <div>
+                              <div className="text-2xl font-semibold">
+                                {s.value}
+                              </div>
+                              <div className="mt-1 text-small text-white/70">
+                                {s.label}
+                              </div>
+                            </div>
+                          </StaggerItem>
+                        ))}
+                      </Stagger>
+                    </div>
+                  </Reveal>
+                ) : null}
+              </div>
+
+              {/* RIGHT spacer */}
+              <div className="relative hidden sm:block">
+                <div className="h-[520px] w-full" />
+              </div>
+            </Grid>
+          </div>
+
+          {/* Floating bottom card (enhanced + connected) */}
+          <div className="-mt-16 sm:-mt-24 pb-8 sm:pb-10 relative">
+            {/* connect bar */}
+            <div className="pointer-events-none absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-white/20 rounded-full" />
+
+            <Reveal y={18} delay={0.06}>
+              <Card
+                padded={false}
+                className="mx-auto max-w-[980px] rounded-2xl bg-gradient-to-b from-surface to-bg text-text shadow-xl border border-border"
+              >
+                <div className="px-5 sm:px-8 py-6">
+                  <div className="grid gap-6 sm:grid-cols-3 sm:items-center">
+                    {/* PHONE */}
+                    <Reveal y={12} delay={0.08}>
+                      <div className="flex items-center gap-4">
+                        <div className="h-12 w-12 rounded-xl bg-brand-900 flex items-center justify-center text-white shrink-0">
+                          <svg
+                            className="h-5 w-5"
+                            viewBox="-2 -2 28 28"
+                            fill="none"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M6.5 3.5l3 1.5-1.3 3c.8 1.5 2 2.7 3.5 3.5l3-1.3 1.5 3c.2.5 0 1.1-.4 1.5l-1.6 1.6c-.6.6-1.5.8-2.3.5-6.1-2.3-10.4-6.6-12.7-12.7-.3-.8-.1-1.7.5-2.3L5 3.9c.4-.4 1-.6 1.5-.4Z"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinejoin="round"
+                              vectorEffect="non-scaling-stroke"
+                            />
+                          </svg>
+                        </div>
+
+                        <div>
+                          <div className="text-[15px] font-semibold">
+                            {t("common.phone", "Phone")}
+                          </div>
+                          <a
+                            href={phoneTel ? `tel:${phoneTel}` : undefined}
+                            dir="ltr"
+                            className="text-[13px] text-muted hover:underline"
+                            style={{ unicodeBidi: "isolate" }}
+                          >
+                            {phoneDisplay || "+20 …"}
+                          </a>
+                        </div>
+                      </div>
+                    </Reveal>
+
+                    {/* HOURS */}
+                    <Reveal y={12} delay={0.12}>
+                      <div className="flex items-center gap-4 sm:justify-center">
+                        <div className="h-12 w-12 rounded-xl bg-brand-900 flex items-center justify-center text-white shrink-0">
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M12 22a10 10 0 1 0-10-10 10 10 0 0 0 10 10Z"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                            />
+                            <path
+                              d="M12 6v6l4 2"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                            />
+                          </svg>
+                        </div>
+
+                        <div>
+                          <div className="text-[15px] font-semibold">
+                            {t("common.hours", "Working hours")}
+                          </div>
+                          <div className="text-[13px] text-muted">
+                            {site.hours?.[0]?.time ||
+                              t("home.hoursFallback", "Sun–Thu 9:30 AM – 5:30 PM")}
+                          </div>
+                        </div>
+                      </div>
+                    </Reveal>
+
+                    {/* CTA */}
+                    <Reveal y={12} delay={0.16}>
+                      <div className="sm:text-right">
+                        <Button
+                          onClick={() => navigate("/contact")}
+                          className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-accent hover:bg-accent/90 text-white min-h-[44px]"
+                        >
+                          {t("common.contactUs", "Contact us")}
+                        </Button>
+
+                        {/* reduced redundancy: phone moved to subtle line on desktop only */}
+                        <div className="mt-3 hidden sm:block text-[12px] text-muted">
+                          {t("common.phone", "Phone")}:{" "}
+                          <span dir="ltr" style={{ unicodeBidi: "isolate" }}>
+                            {phoneDisplay}
+                          </span>
+                        </div>
+                      </div>
+                    </Reveal>
+                  </div>
+                </div>
+              </Card>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
+      {/* SECTION 1: Services preview (reduce cognitive load) */}
+      <Section className="py-14 relative">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
+        </div>
+
+        <Container className="relative">
+          <Reveal>
+            <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/25 to-transparent" />
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 className="text-h2 text-brand-900">{t("nav.services")}</h2>
+                {home?.servicesPreview?.subtitle ? (
+                  <p className="mt-2 max-w-2xl text-body text-muted">
+                    {home.servicesPreview.subtitle}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className="hidden sm:block">
+                <Button
+                  onClick={() => navigate("/services")}
+                  className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+                >
+                  {t("common.viewAll", "View all")}
+                </Button>
+              </div>
+            </div>
+          </Reveal>
+
+          <Stagger className="mt-10 grid gap-4 sm:grid-cols-3">
+            {(home?.servicesPreview?.items || []).slice(0, 6).map((s, idx) => {
+              const isPrimary = idx < 3;
+              return (
+                <StaggerItem key={idx}>
+                  <Card
+                    className={[
+                      "rounded-2xl border bg-gradient-to-b from-surface to-bg shadow-sm hover:shadow-md transition",
+                      isPrimary ? "border-brand-900/30" : "border-border opacity-90",
+                    ].join(" ")}
+                  >
+                    <div className="text-[15px] font-semibold text-text">
+                      {s.title}
+                    </div>
+                    <p className="mt-2 text-[13px] text-muted leading-relaxed">
+                      {s.desc}
+                    </p>
+
+                    <div className="mt-4">
+                      <Button
+                        variant="secondary"
+                        onClick={() => navigate("/services")}
+                        className="rounded-full px-5 py-2 text-[13px] min-h-[44px]"
+                      >
+                        {t("common.learnMore", "Learn more")}
+                      </Button>
+                    </div>
+                  </Card>
+                </StaggerItem>
+              );
+            })}
+          </Stagger>
+
+          <Reveal delay={0.05} y={12}>
+            <div className="mt-8 sm:hidden">
+              <Button
+                onClick={() => navigate("/services")}
+                className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+              >
+                {t("common.viewAll", "View all")}
+              </Button>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* SECTION 2: Patient Stories preview (avatar initials) */}
+      <Section className="py-14 bg-surface">
+        <Container>
+          <Reveal>
+            <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/20 to-transparent" />
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 className="text-h2 text-brand-900">{t("nav.stories")}</h2>
+                {home?.storiesPreview?.subtitle ? (
+                  <p className="mt-2 max-w-2xl text-body text-muted">
+                    {home.storiesPreview.subtitle}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className="hidden sm:block">
+                <Button
+                  onClick={() => navigate("/stories")}
+                  className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+                >
+                  {t("common.viewAll", "View all")}
+                </Button>
+              </div>
+            </div>
+          </Reveal>
+
+          <Stagger className="mt-10 grid gap-4 sm:grid-cols-3">
+            {(home?.storiesPreview?.items || []).slice(0, 3).map((r, idx) => {
+              const initial = (r?.name || "?").trim().charAt(0) || "?";
+              return (
+                <StaggerItem key={idx}>
+                  <Card className="rounded-2xl border border-border bg-gradient-to-b from-bg to-surface shadow-sm">
+                    <p className="text-[13px] text-muted leading-relaxed">
+                      “{r.quote}”
+                    </p>
+
+                    <div className="mt-4 flex items-center gap-3">
+                      <div className="h-8 w-8 rounded-full bg-brand-900 text-white grid place-items-center text-xs font-semibold">
+                        {initial}
+                      </div>
+
+                      <div>
+                        <div className="text-[14px] font-semibold text-text">
+                          {r.name}
+                        </div>
+                        {r.detail ? (
+                          <div className="mt-0.5 text-[12px] text-muted">
+                            {r.detail}
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  </Card>
+                </StaggerItem>
+              );
+            })}
+          </Stagger>
+
+          <Reveal delay={0.05} y={12}>
+            <div className="mt-8 sm:hidden">
+              <Button
+                onClick={() => navigate("/stories")}
+                className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+              >
+                {t("common.viewAll", "View all")}
+              </Button>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* SECTION 3: About preview (value blocks instead of plain bullets) */}
+      <Section className="py-14 relative">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
+        </div>
+
+        <Container className="relative">
+          <Grid cols={2} gap="lg" className="items-start">
+            <div>
+              <Reveal>
+                <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/25 to-transparent" />
+                <h2 className="text-h2 text-brand-900">{t("nav.about")}</h2>
+              </Reveal>
+
+              {home?.aboutPreview?.subtitle ? (
+                <Reveal delay={0.10} y={14}>
+                  <p className="mt-3 text-body text-muted leading-relaxed">
+                    {home.aboutPreview.subtitle}
+                  </p>
+                </Reveal>
+              ) : null}
+
+              {home?.aboutPreview?.bullets?.length ? (
+                <Stagger className="mt-6">
+                  <ul className="space-y-3">
+                    {home.aboutPreview.bullets.slice(0, 5).map((b, idx) => (
+                      <StaggerItem key={idx}>
+                        <li className="flex items-start gap-3 rounded-xl border border-border bg-white/40 dark:bg-white/5 px-4 py-3">
+                          <span className="mt-1.5 h-2 w-2 rounded-full bg-accent shrink-0" />
+                          <div className="text-[13px] sm:text-[14px] text-muted leading-relaxed">
+                            {b}
+                          </div>
+                        </li>
+                      </StaggerItem>
+                    ))}
+                  </ul>
+                </Stagger>
+              ) : null}
+
+              <Reveal delay={0.18} y={12}>
+                <div className="mt-8">
+                  <Button
+                    onClick={() => navigate("/about")}
+                    className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+                  >
+                    {t("common.learnMore", "Learn more")}
+                  </Button>
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal y={16} delay={0.08}>
+              <Card className="rounded-2xl border border-border bg-gradient-to-b from-surface to-bg shadow-sm">
+                <div className="text-[15px] font-semibold text-text">
+                  {site.legalName}
+                </div>
+                <div className="mt-3 space-y-3 text-[13px] text-muted">
+                  <div>
+                    <span className="font-semibold text-text">
+                      {t("common.address", "Address")}:
+                    </span>{" "}
+                    {site.address}
+                  </div>
+                  <div>
+                    <span className="font-semibold text-text">
+                      {t("common.phone", "Phone")}:
+                    </span>{" "}
+                    <span dir="ltr" style={{ unicodeBidi: "isolate" }}>
+                      {phoneDisplay}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-text">
+                      {t("common.hours", "Working hours")}:
+                    </span>{" "}
+                    {site.hours?.[0]?.time ||
+                      t("home.hoursFallback", "Sun–Thu 9:30 AM – 5:30 PM")}
+                  </div>
+                </div>
+
+                <div className="mt-6">
+                  <Button
+                    variant="secondary"
+                    onClick={() => navigate("/contact")}
+                    className="rounded-full px-6 py-2.5 text-[13px] min-h-[44px]"
+                  >
+                    {t("common.contactUs", "Contact us")}
+                  </Button>
+                </div>
+              </Card>
+            </Reveal>
+          </Grid>
+        </Container>
+      </Section>
+
+      {/* SECTION 4: FAQ preview (interactive affordance) */}
+      <Section className="py-14 bg-surface">
+        <Container>
+          <Reveal>
+            <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/20 to-transparent" />
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 className="text-h2 text-brand-900">{t("nav.faq")}</h2>
+                {home?.faqPreview?.subtitle ? (
+                  <p className="mt-2 max-w-2xl text-body text-muted">
+                    {home.faqPreview.subtitle}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className="hidden sm:block">
+                <Button
+                  onClick={() => navigate("/faq")}
+                  className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+                >
+                  {t("common.viewAll", "View all")}
+                </Button>
+              </div>
+            </div>
+          </Reveal>
+
+          <Stagger className="mt-10 grid gap-4 sm:grid-cols-2">
+            {(home?.faqPreview?.items || []).slice(0, 4).map((qa, idx) => (
+              <StaggerItem key={idx}>
+                <Card
+                  className="rounded-2xl border border-border bg-gradient-to-b from-bg to-surface shadow-sm hover:shadow-md transition cursor-pointer hover:bg-brand-900/5"
+                  onClick={() => navigate("/faq")}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="text-[15px] font-semibold text-text">
+                      {qa.q}
+                    </div>
+                    <div className="text-muted mt-1">›</div>
+                  </div>
+                  <p className="mt-2 text-[13px] text-muted leading-relaxed">
+                    {qa.a}
+                  </p>
+                </Card>
+              </StaggerItem>
+            ))}
+          </Stagger>
+
+          <Reveal delay={0.05} y={12}>
+            <div className="mt-8 sm:hidden">
+              <Button
+                onClick={() => navigate("/faq")}
+                className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+              >
+                {t("common.viewAll", "View all")}
+              </Button>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* SECTION 5: Blog preview (unchanged, just ensure tap targets) */}
+      <Section className="py-14 relative">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
+        </div>
+
+        <Container className="relative">
+          <Reveal>
+            <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/25 to-transparent" />
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 className="text-h2 text-brand-900">{t("nav.blog")}</h2>
+                {home?.blogPreview?.subtitle ? (
+                  <p className="mt-2 max-w-2xl text-body text-muted">
+                    {home.blogPreview.subtitle}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className="hidden sm:block">
+                <Button
+                  onClick={() => navigate("/blog")}
+                  className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+                >
+                  {t("common.viewAll", "View all")}
+                </Button>
+              </div>
+            </div>
+          </Reveal>
+
+          <Stagger className="mt-10 grid gap-4 sm:grid-cols-3">
+            {(home?.blogPreview?.posts || []).slice(0, 3).map((p, idx) => (
+              <StaggerItem key={idx}>
+                <Card className="rounded-2xl border border-border bg-gradient-to-b from-surface to-bg shadow-sm hover:shadow-md transition">
+                  <div className="text-[15px] font-semibold text-text">
+                    {p.title}
+                  </div>
+                  {p.date ? (
+                    <div className="mt-1 text-[12px] text-muted">{p.date}</div>
+                  ) : null}
+                  <p className="mt-2 text-[13px] text-muted leading-relaxed">
+                    {p.excerpt}
+                  </p>
+
+                  <div className="mt-4">
+                    <Button
+                      variant="secondary"
+                      onClick={() => navigate(p.href || "/blog")}
+                      className="rounded-full px-5 py-2 text-[13px] min-h-[44px]"
+                    >
+                      {t("common.readMore", "Read more")}
+                    </Button>
+                  </div>
+                </Card>
+              </StaggerItem>
+            ))}
+          </Stagger>
+
+          <Reveal delay={0.05} y={12}>
+            <div className="mt-8 sm:hidden">
+              <Button
+                onClick={() => navigate("/blog")}
+                className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+              >
+                {t("common.viewAll", "View all")}
+              </Button>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* FINAL CTA BAND (cleaner + less redundancy) */}
+      <Section padded={false} className="py-0">
+        <div className="relative overflow-hidden bg-brand-900 text-white">
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/35" />
+          <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-28 -left-28 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl" />
+
+          <Container className="relative py-12 sm:py-14">
+            <Grid cols={2} gap="lg" className="items-center">
+              <div>
+                <Reveal>
+                  <h2 className="text-[28px] sm:text-[34px] leading-tight font-semibold">
+                    {home?.finalCta?.title || t("home.finalTitle", "Need help or guidance?")}
+                  </h2>
+                </Reveal>
+                <Reveal delay={0.10} y={14}>
+                  <p className="mt-3 text-body text-white/80 max-w-xl">
+                    {home?.finalCta?.subtitle ||
+                      t(
+                        "home.finalSubtitle",
+                        "Call us or contact the clinic — we will guide you to the right next step."
+                      )}
+                  </p>
+                </Reveal>
+
+                {/* subtle info line */}
+                <div className="mt-5 text-[12px] text-white/65">
+                  {t("common.address", "Address")}: {site.address}
+                </div>
+              </div>
+
+              <Reveal delay={0.14} y={12}>
+                <div className={isRTL ? "sm:text-left" : "sm:text-right"}>
+                  <div className="flex flex-wrap gap-3 sm:justify-end">
+                    <Button
+                      onClick={callNow}
+                      className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-accent hover:bg-accent/90 text-white min-h-[44px]"
+                    >
+                      {t("common.callNow", "Call now")}
+                    </Button>
+                    <Button
+                      onClick={() => navigate("/contact")}
+                      className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/15 min-h-[44px]"
+                    >
+                      {t("common.contactUs", "Contact us")}
+                    </Button>
+                  </div>
+
+                  {/* reduced redundancy: phone shown subtly */}
+                  <div className="mt-5 text-small text-white/70">
+                    {t("common.phone", "Phone")}:{" "}
+                    <span dir="ltr" style={{ unicodeBidi: "isolate" }}>
+                      {phoneDisplay}
+                    </span>
+                  </div>
+                </div>
+              </Reveal>
+            </Grid>
+          </Container>
+        </div>
+      </Section>
+    </main>
+  );
 }
