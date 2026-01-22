@@ -1,66 +1,70 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand: #003651;
+  --color-brand-900: #05182B;
+  --color-accent: #C9A27C;
+
+  --color-teal: #0E7490;
+  --color-sky: #6FA7C8;
+
+  --color-bg: #F4F8FB;
+  --color-surface: #EBF4F9;
+
+  --color-text: #071723;
+  --color-muted: #475E6E;
+  --color-border: #C8D8E2;
+
+  --color-success: #22C55E;
+  --color-danger: #EF4444;
+}
+
 :root {
-  /* Fonts */
   --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-sans-ar: Cairo, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
-  /* Brand colors (from logo) */
-  --color-brand: 2 54 81;        /* #023651 */
-  --color-brand-900: 1 12 55;    /* #010C37 */
-
-  /* Neutrals (clean medical) */
-  --color-bg: 255 255 255;
-  --color-surface: 248 250 252;
-  --color-text: 15 23 42;
-  --color-muted: 100 116 139;
-  --color-border: 226 232 240;
-
-  /* Status */
-  --color-accent: 34 197 94;
-  --color-danger: 239 68 68;
-
-  /* Radius */
   --radius-sm: 10px;
   --radius-md: 14px;
   --radius-lg: 18px;
 
-  /* Shadow */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.10);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.10);
 
-  /* Spacing (8px grid) */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-6: 24px;
-  --space-8: 32px;
-  --space-10: 40px;
-  --space-12: 48px;
-  --space-16: 64px;
-
-  /* Typography scale */
-  --text-h1: 40px;
-  --text-h2: 32px;
-  --text-h3: 24px;
-  --text-body: 16px;
-  --text-small: 14px;
-
-  --lh-tight: 1.15;
-  --lh-normal: 1.5;
-  --lh-relaxed: 1.75;
+  /* keep RGB triplets ONLY if you need rgba(var(...), alpha) */
+  --rgb-accent: 201 162 124;
+  --rgb-teal: 14 116 144;
+  --rgb-sky: 111 167 200;
+  --rgb-brand-900: 5 24 43;
 }
 
-/* Default font + base colors */
-html,
-body {
+/* Base */
+html, body {
   font-family: var(--font-sans);
-  color: rgb(var(--color-text));
-  background: rgb(var(--color-bg));
+  color: var(--color-text);
+  background: var(--color-bg);
 }
 
-/* Arabic font when dir=rtl */
-html[dir="rtl"] body {
-  font-family: var(--font-sans-ar);
+html[dir="rtl"] body { font-family: var(--font-sans-ar); }
+
+@layer utilities {
+  .hero-bg {
+    background:
+      linear-gradient(to bottom, var(--color-brand-900) 0%, var(--color-brand-900) 100%),
+      radial-gradient(900px 520px at 70% 18%, rgba(var(--rgb-accent), 0.22), transparent 62%),
+      radial-gradient(680px 420px at 20% 80%, rgba(var(--rgb-teal), 0.18), transparent 60%),
+      radial-gradient(520px 360px at 92% 78%, rgba(var(--rgb-sky), 0.16), transparent 60%),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.45));
+    background-blend-mode: normal, screen, screen, screen, normal;
+  }
+  .ui-transition {
+    transition: transform 250ms cubic-bezier(.22,1,.36,1),
+                box-shadow 250ms cubic-bezier(.22,1,.36,1),
+                background-color 250ms cubic-bezier(.22,1,.36,1),
+                border-color 250ms cubic-bezier(.22,1,.36,1),
+                color 250ms cubic-bezier(.22,1,.36,1),
+                opacity 250ms cubic-bezier(.22,1,.36,1);
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
 }

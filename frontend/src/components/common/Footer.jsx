@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+
+import { getSiteContent } from "../../content"; // adjust if your content path differs
 
 import Container from "../ui/Container";
 import Section from "../ui/Section";
@@ -47,23 +50,34 @@ function ClockIcon() {
         stroke="currentColor"
         strokeWidth="2"
       />
-      <path
-        d="M12 6v6l4 2"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
+      <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
 
 export default function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  // Replace/add your real clinic details here
-  const phone = "+973 17270017";
-  const location = "Gulf Medical Complex, Salmanniya, Bahrain";
-  const hours = t("footer.hours", "Working hours: Please contact the clinic");
+  // pull from the same en/ar structure (siteEN/siteAR)
+  const site = useMemo(() => {
+    const lang = i18n.language || "en";
+    return getSiteContent(lang);
+  }, [i18n.language]);
+
+  const brandName = site?.brand?.name || site?.clinicName || t("footer.brand", "Dr. Youssry");
+  const brandTagline = site?.brand?.tagline || t("footer.tagline", "Medical Center");
+
+  const phoneDisplay = site?.phoneDisplay || site?.phoneTel || "";
+  const phoneTel = (site?.phoneTel || phoneDisplay || "").replace(/\s+/g, "");
+  const address = site?.address || "";
+
+  // hours: supports either site.hours array OR fallback translation
+  const hoursText =
+    (Array.isArray(site?.hours) && site.hours[0]?.time) ||
+    t("home.hoursFallback", "Sun–Thu 9:30 AM – 5:30 PM");
+
+  // socials (optional)
+  const socials = site?.socials || site?.social || {};
 
   return (
     <footer className="bg-surface">
@@ -74,27 +88,27 @@ export default function Footer() {
             <Stack gap="md">
               <div className="leading-tight">
                 <div className="text-body font-semibold text-brand-900">
-                  Dr. Youssry Medical Center
+                  {site?.clinicName || site?.legalName || brandName}
                 </div>
-                <div className="text-small text-muted">
-                  {t("footer.tagline", "Surgery and Diabetic Foot Center")}
-                </div>
+                <div className="text-small text-muted">{t("footer.tagline", brandTagline)}</div>
               </div>
 
-              <p className="text-body text-muted">
-                {t(
-                  "footer.about",
-                  "Comprehensive diabetic foot care with a focus on prevention, wound management, and limb preservation."
-                )}
-              </p>
+              <p className="text-body text-muted">{t("footer.about")}</p>
 
               <div className="flex flex-wrap gap-3">
-                <a href={`tel:${phone.replace(/\s+/g, "")}`}>
-                  <Button size="sm">Call</Button>
-                </a>
+                {phoneTel ? (
+                  <a href={`tel:${phoneTel}`}>
+                    <Button size="sm">{t("common.callNow", "Call now")}</Button>
+                  </a>
+                ) : (
+                  <Button size="sm" disabled>
+                    {t("common.callNow", "Call now")}
+                  </Button>
+                )}
+
                 <NavLink to="/contact">
                   <Button size="sm" variant="secondary">
-                    Contact
+                    {t("common.contactUs", "Contact us")}
                   </Button>
                 </NavLink>
               </div>
@@ -130,44 +144,65 @@ export default function Footer() {
 
             {/* Contact info */}
             <Stack gap="md">
-              <div className="text-body font-semibold text-text">
-                {t("footer.contact", "Contact")}
-              </div>
+              <div className="text-body font-semibold text-text">{t("footer.contact", "Contact")}</div>
 
               <Stack gap="sm">
                 <IconText
                   icon={<PhoneIcon />}
                   title={t("footer.phone", "Phone")}
-                  description={phone}
+                  description={
+                    phoneTel ? (
+                      <a
+                        href={`tel:${phoneTel}`}
+                        dir="ltr"
+                        className="hover:underline"
+                        style={{ unicodeBidi: "isolate" }}
+                      >
+                        {phoneDisplay || phoneTel}
+                      </a>
+                    ) : (
+                      phoneDisplay
+                    )
+                  }
                 />
+
                 <IconText
                   icon={<PinIcon />}
                   title={t("footer.location", "Location")}
-                  description={location}
+                  description={address}
                 />
+
                 <IconText
                   icon={<ClockIcon />}
                   title={t("footer.hoursTitle", "Working Hours")}
-                  description={hours}
+                  description={hoursText}
                 />
               </Stack>
 
-              {/* Social icons: add real links if you have them */}
               <div className="flex items-center gap-3">
-                <a
-                  className="text-body text-muted hover:text-brand-900"
-                  href="#"
-                  aria-label="Facebook"
-                >
-                  Facebook
-                </a>
-                <a
-                  className="text-body text-muted hover:text-brand-900"
-                  href="#"
-                  aria-label="Instagram"
-                >
-                  Instagram
-                </a>
+                {socials.facebook ? (
+                  <a
+                    className="text-body text-muted hover:text-brand-900"
+                    href={socials.facebook}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Facebook"
+                  >
+                    {t("footer.social.facebook", "Facebook")}
+                  </a>
+                ) : null}
+
+                {socials.instagram ? (
+                  <a
+                    className="text-body text-muted hover:text-brand-900"
+                    href={socials.instagram}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Instagram"
+                  >
+                    {t("footer.social.instagram", "Instagram")}
+                  </a>
+                ) : null}
               </div>
             </Stack>
           </Grid>
@@ -176,8 +211,10 @@ export default function Footer() {
 
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div className="text-small text-muted">
-              © {new Date().getFullYear()} Dr. Youssry Medical Center. {t("footer.rights", "All rights reserved.")}
+              © {new Date().getFullYear()} {site?.clinicName || site?.legalName || brandName}.{" "}
+              {t("footer.rights", "All rights reserved.")}
             </div>
+
             <div className="text-small text-muted">
               <NavLink className="hover:text-brand-900" to="/privacy">
                 {t("footer.privacy", "Privacy")}

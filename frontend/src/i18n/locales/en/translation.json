@@ -1,14 +1,44 @@
 {
-    "nav": {
-        "home": "Home",
-        "about": "About",
-        "services": "Services",
-        "stories": "Patient Stories",
-        "blog": "Blog",
-        "faq": "FAQ",
-        "contact": "Contact"
-    },
-    "common": {
-        "language": "Language"
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "stories": "Patient Stories",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "common": {
+    "language": "Language",
+    "callNow": "Call now",
+    "contactUs": "Contact us",
+    "viewServices": "View services",
+    "viewAll": "View all",
+    "learnMore": "Learn more",
+    "readMore": "Read more",
+    "phone": "Phone",
+    "address": "Address",
+    "hours": "Working hours"
+  },
+  "home": {
+    "hoursFallback": "Sun–Thu 9:30 AM – 5:30 PM",
+    "finalTitle": "Need help or guidance?",
+    "finalSubtitle": "Call us or contact the clinic — we will guide you to the right next step."
+  },
+  "footer": {
+    "tagline": "Surgery and Diabetic Foot Center",
+    "about": "Comprehensive diabetic foot care with a focus on prevention, wound management, and limb preservation.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "phone": "Phone",
+    "location": "Location",
+    "hoursTitle": "Working Hours",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram"
     }
+  }
 }
