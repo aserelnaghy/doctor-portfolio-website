@@ -226,7 +226,7 @@ export default function Home() {
           </div>
 
           {/* Floating bottom card (enhanced + connected) */}
-          <div className="-mt-16 sm:-mt-24 pb-8 sm:pb-10 relative">
+          <div className="-mt-12 sm:-mt-18 pb-8 sm:pb-10 relative">
             {/* connect bar */}
             <div className="pointer-events-none absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-white/20 rounded-full" />
 
@@ -236,30 +236,28 @@ export default function Home() {
                 className="mx-auto max-w-[980px] rounded-2xl bg-gradient-to-b from-surface to-bg text-text shadow-xl border border-border"
               >
                 <div className="px-5 sm:px-8 py-6">
-                  <div className="grid gap-6 sm:grid-cols-3 sm:items-center">
+                  <div className="grid gap-6 sm:grid-cols-3 sm:items-center sm:gap-0">
                     {/* PHONE */}
                     <Reveal y={12} delay={0.08}>
-                      <div className="flex items-center gap-4">
-                        <div className="h-12 w-12 rounded-xl bg-brand-900 flex items-center justify-center text-white shrink-0">
-                          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path
-                              d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.07 21 3 13.93 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2Z"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinejoin="round"
-                              strokeLinecap="round"
-                            />
+                      <div className="relative flex items-center gap-4 sm:px-8 sm:py-2">
+                        {/* divider between col1 and col2 (direction-safe) */}
+                        <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 end-0 h-14 w-px bg-border/70" />
+
+                        <div className="h-14 w-14 rounded-2xl bg-brand-900 flex items-center justify-center text-white shrink-0">
+                          {/* use filled phone icon so it looks correct */}
+                          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.25 1.03l-2.2 2.19z" />
                           </svg>
                         </div>
 
-                        <div>
-                          <div className="text-[15px] font-semibold">
+                        <div className="min-w-0">
+                          <div className="text-[16px] sm:text-[17px] font-semibold">
                             {t("common.phone", "Phone")}
                           </div>
                           <a
                             href={phoneTel ? `tel:${phoneTel}` : undefined}
                             dir="ltr"
-                            className="text-[13px] text-muted hover:underline"
+                            className="mt-1 block text-[14px] text-muted hover:underline"
                             style={{ unicodeBidi: "isolate" }}
                           >
                             {phoneDisplay || "+20 …"}
@@ -270,36 +268,23 @@ export default function Home() {
 
                     {/* HOURS */}
                     <Reveal y={12} delay={0.12}>
-                      <div className="flex items-center gap-4 sm:justify-center">
-                        <div className="h-12 w-12 rounded-xl bg-brand-900 flex items-center justify-center text-white shrink-0">
-                          <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            aria-hidden="true"
-                          >
-                            <path
-                              d="M12 22a10 10 0 1 0-10-10 10 10 0 0 0 10 10Z"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                            />
-                            <path
-                              d="M12 6v6l4 2"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                            />
+                      <div className="relative flex items-center gap-4 sm:px-8 sm:py-2">
+                        {/* divider between col2 and col3 */}
+                        <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 end-0 h-14 w-px bg-border/70" />
+
+                        <div className="h-14 w-14 rounded-2xl bg-brand-900 flex items-center justify-center text-white shrink-0">
+                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M12 22a10 10 0 1 0-10-10 10 10 0 0 0 10 10Z" stroke="currentColor" strokeWidth="2" />
+                            <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                           </svg>
                         </div>
 
-                        <div>
-                          <div className="text-[15px] font-semibold">
+                        <div className="min-w-0">
+                          <div className="text-[16px] sm:text-[17px] font-semibold">
                             {t("common.hours", "Working hours")}
                           </div>
-                          <div className="text-[13px] text-muted">
-                            {site.hours?.[0]?.time ||
-                              t("home.hoursFallback", "Sun–Thu 9:30 AM – 5:30 PM")}
+                          <div className="mt-1 text-[14px] text-muted">
+                            {site.hours?.[0]?.time || t("home.hoursFallback", "Sun–Thu 9:30 AM – 5:30 PM")}
                           </div>
                         </div>
                       </div>
@@ -307,157 +292,150 @@ export default function Home() {
 
                     {/* CTA */}
                     <Reveal y={12} delay={0.16}>
-                      <div className="sm:text-right">
+                      <div className="flex flex-col items-center justify-center gap-3 sm:px-8 sm:py-2">
                         <Button
                           onClick={() => navigate("/contact")}
-                          className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-accent hover:bg-accent/90 text-white min-h-[44px]"
+                          className="rounded-full px-10 py-4 text-[15px] font-semibold bg-accent hover:bg-accent/90 text-white min-h-[48px]"
                         >
                           {t("common.contactUs", "Contact us")}
                         </Button>
-
-                        {/* reduced redundancy: phone moved to subtle line on desktop only */}
-                        <div className="mt-3 hidden sm:block text-[12px] text-muted">
-                          {t("common.phone", "Phone")}:{" "}
-                          <span dir="ltr" style={{ unicodeBidi: "isolate" }}>
-                            {phoneDisplay}
-                          </span>
-                        </div>
                       </div>
-                    </Reveal>
-                  </div>
-                </div>
-              </Card>
-            </Reveal>
+                </Reveal>
+              </div>
           </div>
-        </Container>
-      </section>
+        </Card>
+      </Reveal>
+    </div>
+        </Container >
+      </section >
 
-      {/* SECTION: Trust (hero-style, badge cards, parallax) */}
-      <Section
-        className="py-20 sm:py-24 lg:py-28 relative"
-        ref={trustRef}
-        onMouseMove={onTrustMove}
-        onMouseLeave={onTrustLeave}
-        style={{ ["--mx"]: 0, ["--my"]: 0 }}
+    {/* SECTION: Trust (hero-style, badge cards, parallax) */ }
+    < Section
+  className = "py-20 sm:py-24 lg:py-28 relative"
+  ref = { trustRef }
+  onMouseMove = { onTrustMove }
+  onMouseLeave = { onTrustLeave }
+  style = {{ ["--mx"]: 0, ["--my"]: 0 }
+}
       >
-        {/* background (soft like Services, but a touch richer) */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+  {/* background (soft like Services, but a touch richer) */ }
+  < div className = "pointer-events-none absolute inset-0 overflow-hidden" >
           <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-surface" />
           <div className="absolute -top-28 -left-28 h-72 w-72 rounded-full bg-brand/12 blur-3xl" />
           <div className="absolute -bottom-28 -right-28 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl" />
+        </div >
+
+  <Container className="relative">
+    <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+      {/* LEFT: reference-like text */}
+      <Reveal>
+        <div>
+          {/* doctor badge */}
+          <div className="inline-flex items-center rounded-full border border-brand-900/15 bg-white/70 px-4 py-2 text-[12px] font-semibold tracking-[0.12em] text-brand-900">
+            {trust.badge}
+          </div>
+
+          <h2 className="mt-5 text-[40px] sm:text-[48px] lg:text-[54px] leading-[1.05] font-semibold text-brand-900">
+            {trustTitle}
+          </h2>
+
+          {trustSubtitle ? (
+            <p className="mt-4 max-w-xl text-[16px] sm:text-[17px] leading-relaxed text-muted">
+              {trustSubtitle}
+            </p>
+          ) : null}
+
+          <div className="mt-8">
+            <Button
+              onClick={() => navigate("/about")}
+              className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-accent hover:bg-accent/90 text-white min-h-[44px]">
+              <span className="opacity-95">{trust.aboutButton}</span>
+            </Button>
+          </div>
         </div>
+      </Reveal>
 
-        <Container className="relative">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            {/* LEFT: reference-like text */}
-            <Reveal>
-              <div>
-                {/* doctor badge */}
-                <div className="inline-flex items-center rounded-full border border-brand-900/15 bg-white/70 px-4 py-2 text-[12px] font-semibold tracking-[0.12em] text-brand-900">
-                  {trust.badge}
-                </div>
+      {/* RIGHT: bigger polished cards */}
+      <Stagger className="grid grid-cols-2 gap-5 sm:gap-6 lg:justify-self-end">
+        {trustItems.slice(0, 4).map((it, idx) => {
+          const isNavy = idx === 1 || idx === 2;
 
-                <h2 className="mt-5 text-[40px] sm:text-[48px] lg:text-[54px] leading-[1.05] font-semibold text-brand-900">
-                  {trustTitle}
-                </h2>
+          const cardBg = isNavy
+            ? "bg-gradient-to-br from-[#0B2F66] via-[#0A2348] to-[#071A38]"
+            : "bg-gradient-to-br from-[#EAF6FF] via-[#D8EEFF] to-[#CBE7FF]";
 
-                {trustSubtitle ? (
-                  <p className="mt-4 max-w-xl text-[16px] sm:text-[17px] leading-relaxed text-muted">
-                    {trustSubtitle}
-                  </p>
-                ) : null}
+          const valueClass = isNavy ? "text-white" : "text-brand-900";
+          const labelClass = isNavy ? "text-white" : "text-brand-900";
+          const subClass = isNavy ? "text-white/75" : "text-brand-900/70";
 
-                <div className="mt-8">
-                  <Button
-                    onClick={() => navigate("/about")}
-                    className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-accent hover:bg-accent/90 text-white min-h-[44px]">
-                    <span className="opacity-95">{trust.aboutButton}</span>
-                  </Button>
-                </div>
-              </div>
-            </Reveal>
+          // base “badge tilt” per card (slightly different angles)
+          const tilt =
+            idx === 0 ? -2 : idx === 1 ? 2 : idx === 2 ? -1.5 : 1.5;
 
-            {/* RIGHT: bigger polished cards */}
-            <Stagger className="grid grid-cols-2 gap-5 sm:gap-6 lg:justify-self-end">
-              {trustItems.slice(0, 4).map((it, idx) => {
-                const isNavy = idx === 1 || idx === 2;
-
-                const cardBg = isNavy
-                  ? "bg-gradient-to-br from-[#0B2F66] via-[#0A2348] to-[#071A38]"
-                  : "bg-gradient-to-br from-[#EAF6FF] via-[#D8EEFF] to-[#CBE7FF]";
-
-                const valueClass = isNavy ? "text-white" : "text-brand-900";
-                const labelClass = isNavy ? "text-white" : "text-brand-900";
-                const subClass = isNavy ? "text-white/75" : "text-brand-900/70";
-
-                // base “badge tilt” per card (slightly different angles)
-                const tilt =
-                  idx === 0 ? -2 : idx === 1 ? 2 : idx === 2 ? -1.5 : 1.5;
-
-                return (
-                  <StaggerItem key={idx}>
-                    <div
-                      className={[
-                        "relative overflow-hidden rounded-[28px] border shadow-sm",
-                        "w-full h-[190px] sm:h-[230px] lg:h-[250px]",
-                        "p-9 sm:p-11",
-                        cardBg,
-                        isNavy ? "border-white/10" : "border-brand-900/15",
-                        // polished hover
-                        "transition-transform duration-200 will-change-transform",
-                        "hover:-translate-y-1 hover:shadow-lg",
-                      ].join(" ")}
-                      style={{
-                        transform: `
+          return (
+            <StaggerItem key={idx}>
+              <div
+                className={[
+                  "relative overflow-hidden rounded-[28px] border shadow-sm",
+                  "w-full h-[190px] sm:h-[230px] lg:h-[250px]",
+                  "p-9 sm:p-11",
+                  cardBg,
+                  isNavy ? "border-white/10" : "border-brand-900/15",
+                  // polished hover
+                  "transition-transform duration-200 will-change-transform",
+                  "hover:-translate-y-1 hover:shadow-lg",
+                ].join(" ")}
+                style={{
+                  transform: `
                     perspective(900px)
                     rotateX(calc(var(--my) * -5deg))
                     rotateY(calc(var(--mx) * 6deg))
                     rotateZ(${tilt}deg)
                     translate3d(calc(var(--mx) * 6px), calc(var(--my) * 5px), 0)
                   `,
-                      }}
-                    >
-                      {/* shiny highlight (works for both variants) */}
-                      <div
-                        className="pointer-events-none absolute -inset-16 opacity-70"
-                        style={{
-                          background:
-                            "radial-gradient(closest-side, rgba(255,255,255,0.50), rgba(255,255,255,0.00) 70%)",
-                          transform:
-                            "translate(calc(var(--mx) * 18px), calc(var(--my) * 14px))",
-                        }}
-                      />
+                }}
+              >
+                {/* shiny highlight (works for both variants) */}
+                <div
+                  className="pointer-events-none absolute -inset-16 opacity-70"
+                  style={{
+                    background:
+                      "radial-gradient(closest-side, rgba(255,255,255,0.50), rgba(255,255,255,0.00) 70%)",
+                    transform:
+                      "translate(calc(var(--mx) * 18px), calc(var(--my) * 14px))",
+                  }}
+                />
 
-                      {/* subtle gloss line */}
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/18 via-transparent to-black/15" />
+                {/* subtle gloss line */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/18 via-transparent to-black/15" />
 
-                      {/* content */}
-                      <div className="relative">
-                        <div className={`trust-value text-[44px] sm:text-[56px] lg:text-[60px] leading-none font-semibold ${valueClass}`}>
-                          <CountUp value={it.value} />
-                        </div>
+                {/* content */}
+                <div className="relative">
+                  <div className={`trust-value text-[44px] sm:text-[56px] lg:text-[60px] leading-none font-semibold ${valueClass}`}>
+                    <CountUp value={it.value} />
+                  </div>
 
-                        <div className={`mt-4 text-[15px] sm:text-[18px] font-semibold ${labelClass}`}>
-                          {it.label}
-                        </div>
+                  <div className={`mt-4 text-[15px] sm:text-[18px] font-semibold ${labelClass}`}>
+                    {it.label}
+                  </div>
 
-                        {it.subLabel ? (
-                          <div className={`mt-2 text-[13px] sm:text-[14px] leading-relaxed ${subClass}`}>
-                            {it.subLabel}
-                          </div>
-                        ) : null}
-                      </div>
+                  {it.subLabel ? (
+                    <div className={`mt-2 text-[13px] sm:text-[14px] leading-relaxed ${subClass}`}>
+                      {it.subLabel}
                     </div>
-                  </StaggerItem>
-                );
-              })}
-            </Stagger>
-          </div>
-        </Container>
-      </Section>
+                  ) : null}
+                </div>
+              </div>
+            </StaggerItem>
+          );
+        })}
+      </Stagger>
+    </div>
+  </Container>
+      </Section >
 
-      {/* SECTION 1: Services preview (reduce cognitive load) */}
-      <Section className="py-14 relative">
+  {/* SECTION 1: Services preview (reduce cognitive load) */ }
+  < Section className = "py-14 relative" >
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
           <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
@@ -542,10 +520,10 @@ export default function Home() {
             </div>
           </Reveal>
         </Container>
-      </Section>
+      </Section >
 
-      {/* SECTION 2: Patient Stories preview (avatar initials) */}
-      <Section className="py-14 relative overflow-hidden bg-brand-900 text-white">
+  {/* SECTION 2: Patient Stories preview (avatar initials) */ }
+  < Section className = "py-14 relative overflow-hidden bg-brand-900 text-white" >
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/35" />
         <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-28 -left-28 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl" />
@@ -618,10 +596,10 @@ export default function Home() {
             </div>
           </Reveal>
         </Container>
-      </Section>
+      </Section >
 
-      {/* SECTION: About preview */}
-      <Section className="py-14 relative">
+  {/* SECTION: About preview */ }
+  < Section className = "py-14 relative" >
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
           <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
@@ -691,10 +669,10 @@ export default function Home() {
             ) : null}
           </div>
         </Container>
-      </Section>
+      </Section >
 
-      {/* SECTION: FAQ preview (2-col + accordion) */}
-      <Section className="py-16 relative overflow-hidden bg-brand-900 text-white">
+  {/* SECTION: FAQ preview (2-col + accordion) */ }
+  < Section className = "py-16 relative overflow-hidden bg-brand-900 text-white" >
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/35" />
         <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-28 -left-28 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl" />
@@ -733,10 +711,10 @@ export default function Home() {
             <FaqAccordion items={(home?.faqPreview?.items || []).slice(0, 5)} />
           </div>
         </Container>
-      </Section>
+      </Section >
 
-      {/* SECTION 5: Blog preview (unchanged, just ensure tap targets) */}
-      <Section className="py-14 relative">
+  {/* SECTION 5: Blog preview (unchanged, just ensure tap targets) */ }
+  < Section className = "py-14 relative" >
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
           <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
@@ -805,69 +783,69 @@ export default function Home() {
             </div>
           </Reveal>
         </Container>
-      </Section>
+      </Section >
 
-      {/* FINAL CTA BAND (cleaner + less redundancy) */}
-      <Section padded={false} className="py-0">
-        <div className="relative overflow-hidden bg-brand-900 text-white">
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/35" />
-          <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-28 -left-28 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl" />
+  {/* FINAL CTA BAND (cleaner + less redundancy) */ }
+  < Section padded = { false} className = "py-0" >
+    <div className="relative overflow-hidden bg-brand-900 text-white">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/35" />
+      <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-28 -left-28 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl" />
 
-          <Container className="relative py-12 sm:py-14">
-            <Grid cols={2} gap="lg" className="items-center">
-              <div>
-                <Reveal>
-                  <h2 className="text-[28px] sm:text-[34px] leading-tight font-semibold">
-                    {home?.finalCta?.title || t("home.finalTitle", "Need help or guidance?")}
-                  </h2>
-                </Reveal>
-                <Reveal delay={0.10} y={14}>
-                  <p className="mt-3 text-body text-white/80 max-w-xl">
-                    {home?.finalCta?.subtitle ||
-                      t(
-                        "home.finalSubtitle",
-                        "Call us or contact the clinic — we will guide you to the right next step."
-                      )}
-                  </p>
-                </Reveal>
+      <Container className="relative py-12 sm:py-14">
+        <Grid cols={2} gap="lg" className="items-center">
+          <div>
+            <Reveal>
+              <h2 className="text-[28px] sm:text-[34px] leading-tight font-semibold">
+                {home?.finalCta?.title || t("home.finalTitle", "Need help or guidance?")}
+              </h2>
+            </Reveal>
+            <Reveal delay={0.10} y={14}>
+              <p className="mt-3 text-body text-white/80 max-w-xl">
+                {home?.finalCta?.subtitle ||
+                  t(
+                    "home.finalSubtitle",
+                    "Call us or contact the clinic — we will guide you to the right next step."
+                  )}
+              </p>
+            </Reveal>
 
-                {/* subtle info line */}
-                <div className="mt-5 text-[12px] text-white/65">
-                  {t("common.address", "Address")}: {site.address}
-                </div>
+            {/* subtle info line */}
+            <div className="mt-5 text-[12px] text-white/65">
+              {t("common.address", "Address")}: {site.address}
+            </div>
+          </div>
+
+          <Reveal delay={0.14} y={12}>
+            <div className={isRTL ? "sm:text-left" : "sm:text-right"}>
+              <div className="flex flex-wrap gap-3 sm:justify-end">
+                <Button
+                  onClick={callNow}
+                  className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-accent hover:bg-accent/90 text-white min-h-[44px]"
+                >
+                  {t("common.callNow", "Call now")}
+                </Button>
+                <Button
+                  onClick={() => navigate("/contact")}
+                  className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/15 min-h-[44px]"
+                >
+                  {t("common.contactUs", "Contact us")}
+                </Button>
               </div>
 
-              <Reveal delay={0.14} y={12}>
-                <div className={isRTL ? "sm:text-left" : "sm:text-right"}>
-                  <div className="flex flex-wrap gap-3 sm:justify-end">
-                    <Button
-                      onClick={callNow}
-                      className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-accent hover:bg-accent/90 text-white min-h-[44px]"
-                    >
-                      {t("common.callNow", "Call now")}
-                    </Button>
-                    <Button
-                      onClick={() => navigate("/contact")}
-                      className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/15 min-h-[44px]"
-                    >
-                      {t("common.contactUs", "Contact us")}
-                    </Button>
-                  </div>
-
-                  {/* reduced redundancy: phone shown subtly */}
-                  <div className="mt-5 text-small text-white/70">
-                    {t("common.phone", "Phone")}:{" "}
-                    <span dir="ltr" style={{ unicodeBidi: "isolate" }}>
-                      {phoneDisplay}
-                    </span>
-                  </div>
-                </div>
-              </Reveal>
-            </Grid>
-          </Container>
-        </div>
-      </Section>
-    </main>
+              {/* reduced redundancy: phone shown subtly */}
+              <div className="mt-5 text-small text-white/70">
+                {t("common.phone", "Phone")}:{" "}
+                <span dir="ltr" style={{ unicodeBidi: "isolate" }}>
+                  {phoneDisplay}
+                </span>
+              </div>
+            </div>
+          </Reveal>
+        </Grid>
+      </Container>
+    </div>
+      </Section >
+    </main >
   );
 }
