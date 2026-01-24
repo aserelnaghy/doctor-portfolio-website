@@ -14,22 +14,49 @@ export const homeEN = {
       { value: "Personal", label: "Care plans" },
       { value: "Experienced", label: "Medical team" },
     ],
-    trustItems: [
-      { value: "20+ years", label: "Experience" },
-      { value: "Diabetic foot care", label: "Specialty" },
-      { value: "Limb preservation", label: "Focus" },
-    ],
     // keep image empty for now
     image: "/images/home/doctor.png",
     imageAlt: "Doctor",
   },
 
+  trust: {
+    badge: "DR. YOUSSRY MEDICAL CENTER W.L.L",
+    aboutButton: "About Dr. Youssry →",
+    title: "Trusted care, proven experience",
+    subtitle: "Key indicators that reflect our expertise and outcomes.",
+    items: [
+      { value: "20+", label: "Years of experience", subLabel: "Diabetic foot care" },
+      { value: "1000+", label: "Patients treated", subLabel: "Follow-ups & outcomes" },
+      { value: "300+", label: "Successful cases", subLabel: "Wound healing support" },
+      { value: "24/7", label: "Guidance", subLabel: "Support & prevention" },
+    ]
+  },
+
   servicesPreview: {
     subtitle: "A selection of key services offered at the center.",
     items: [
-      { title: "Diabetic Foot Exams", desc: "Regular checks to detect issues early." },
-      { title: "Wound Care Management", desc: "Dressings, debridement, infection control." },
-      { title: "Preventive Foot Care", desc: "Daily routines and prevention guidance." },
+      {
+        title: "Diabetic Foot Exams",
+        desc: "Regular checks to detect issues early.",
+        image: {
+          src: "/images/home/diabetic-foot.webp",
+          alt: "Diabetic foot exams"
+        }
+      },
+      {
+        title: "Wound Care Management", desc: "Dressings, debridement, infection control.",
+        image: {
+          src: "/images/home/wound-care.jpg",
+          alt: "Wound care management"
+        }
+      },
+      {
+        title: "Preventive Foot Care", desc: "Daily routines and prevention guidance.",
+        image: {
+          src: "/images/home/footcare.jpg",
+          alt: "Preventive foot care"
+        }
+      },
       { title: "Limb Preservation", desc: "Care focused on reducing amputation risk." },
       { title: "Multidisciplinary Care", desc: "Collaboration for holistic treatment." },
       { title: "General Medicine", desc: "Diagnosis and treatment of common illnesses." },
@@ -66,10 +93,14 @@ export const homeEN = {
       "Hygiene, prevention, and follow-up plans",
       "Clear steps and practical home-care instructions",
     ],
+    image: {
+      src: "/images/home/about-img.webp",
+      alt: "Patient consultation"
+    }
   },
 
   faqPreview: {
-    subtitle: "Quick answers to common questions.",
+    subtitle: "Frequently Asked Questions",
     items: [
       {
         q: "Do you offer appointment booking online?",
