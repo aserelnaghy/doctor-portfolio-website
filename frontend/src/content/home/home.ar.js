@@ -19,13 +19,15 @@ export const homeAR = {
   },
 
   trust: {
+    badge: "مركز د. يسري الطبي ش.ذ.م.م",
+    aboutButton: "عن د. يسري ←",
     title: "رعاية موثوقة، خبرة مثبتة",
     subtitle: "مؤشرات رئيسية تعكس خبرتنا ونتائجنا.",
     items: [
-      { value: "٢٠+", label: "سنوات من الخبرة", subLabel: "رعاية القدم السكري" },
-      { value: "٥٠٠٠+", label: "مرضى تم علاجهم", subLabel: "المتابعات والنتائج" },
-      { value: "٢٠٠+", label: "حالات ناجحة", subLabel: "دعم التئام الجروح" },
-      { value: "٧/٢٤", label: "إرشاد", subLabel: "الدعم والوقاية" },
+      { value: "20+", label: "سنوات من الخبرة", subLabel: "رعاية القدم السكري" },
+      { value: "1000+", label: "مرضى تم علاجهم", subLabel: "المتابعات والنتائج" },
+      { value: "300+", label: "حالات ناجحة", subLabel: "دعم التئام الجروح" },
+      { value: "24/7", label: "إرشاد", subLabel: "الدعم والوقاية" },
     ]
   },
   servicesPreview: {

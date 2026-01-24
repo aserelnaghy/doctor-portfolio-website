@@ -20,12 +20,14 @@ export const homeEN = {
   },
 
   trust: {
+    badge: "DR. YOUSSRY MEDICAL CENTER W.L.L",
+    aboutButton: "About Dr. Youssry →",
     title: "Trusted care, proven experience",
     subtitle: "Key indicators that reflect our expertise and outcomes.",
     items: [
       { value: "20+", label: "Years of experience", subLabel: "Diabetic foot care" },
-      { value: "5K+", label: "Patients treated", subLabel: "Follow-ups & outcomes" },
-      { value: "200+", label: "Successful cases", subLabel: "Wound healing support" },
+      { value: "1000+", label: "Patients treated", subLabel: "Follow-ups & outcomes" },
+      { value: "300+", label: "Successful cases", subLabel: "Wound healing support" },
       { value: "24/7", label: "Guidance", subLabel: "Support & prevention" },
     ]
   },
