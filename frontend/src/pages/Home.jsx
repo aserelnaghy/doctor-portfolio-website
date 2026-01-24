@@ -45,7 +45,11 @@ export default function Home() {
 
   const heroImgSrc = hero?.image || hero?.imageUrl || "";
   const heroImgAlt = hero?.imageAlt || "Doctor";
-  const trustItems = home?.hero?.trustItems || [];
+
+  const trust = home?.trust || {};
+  const trustTitle = trust.title || "";
+  const trustSubtitle = trust.subtitle || "";
+  const trustItems = trust.items || [];
 
   return (
     <main className={isRTL ? "text-right" : "text-left"}>
@@ -71,9 +75,24 @@ export default function Home() {
           }}
         />
 
+        {/* HERO IMAGE: mobile (in flow) */}
+        {heroImgSrc ? (
+          <div className="relative sm:hidden -mx-4 mb-0">
+            {/* optional: keep the background vibe behind the image */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white/0 to-black/25 pointer-events-none" />
+            <img
+              src={heroImgSrc}
+              alt={heroImgAlt}
+              className="w-full h-[320px] object-cover object-top"
+            />
+          </div>
+        ) : null}
+
+
+        {/* HERO IMAGE: desktop (absolute overlay) */}
         <div
           className={[
-            "pointer-events-none absolute inset-y-0 w-[52%] min-w-[520px]",
+            "pointer-events-none absolute inset-y-0 w-[52%] min-w-[520px] hidden sm:block",
             isRTL ? "left-0" : "right-0",
           ].join(" ")}
         >
@@ -91,7 +110,7 @@ export default function Home() {
 
         <Container className="relative">
           {/* keep hero compact on mobile */}
-          <div className="min-h-[82vh] sm:min-h-[78vh] pt-10 sm:pt-14 pb-20 sm:pb-28">
+          <div className="min-h-0 sm:min-h-[78vh] pt-2 sm:pt-14 pb-20 sm:pb-28">
             <Grid cols={2} gap="lg" className="items-start">
               {/* LEFT */}
               <div className="max-w-[620px] pt-4 sm:pt-6">
@@ -151,24 +170,6 @@ export default function Home() {
                   </div>
                 </Reveal>
 
-                {/* Trust strip (new) */}
-                <Reveal delay={0.28} y={14}>
-                  <div className="mt-8 flex flex-wrap gap-3 text-[12px] text-white/75">
-                    {trustItems.map((it, idx) => (
-                      <div
-                        key={idx}
-                        className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2"
-                      >
-                        <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                        <span className="font-semibold text-white/85">
-                          {it.value}
-                        </span>
-                        <span className="text-white/65">{it.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </Reveal>
-
                 {/* stats */}
                 {heroStats.length > 0 ? (
                   <Reveal delay={0.34} y={14}>
@@ -216,18 +217,13 @@ export default function Home() {
                     <Reveal y={12} delay={0.08}>
                       <div className="flex items-center gap-4">
                         <div className="h-12 w-12 rounded-xl bg-brand-900 flex items-center justify-center text-white shrink-0">
-                          <svg
-                            className="h-5 w-5"
-                            viewBox="-2 -2 28 28"
-                            fill="none"
-                            aria-hidden="true"
-                          >
+                          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path
-                              d="M6.5 3.5l3 1.5-1.3 3c.8 1.5 2 2.7 3.5 3.5l3-1.3 1.5 3c.2.5 0 1.1-.4 1.5l-1.6 1.6c-.6.6-1.5.8-2.3.5-6.1-2.3-10.4-6.6-12.7-12.7-.3-.8-.1-1.7.5-2.3L5 3.9c.4-.4 1-.6 1.5-.4Z"
+                              d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.07 21 3 13.93 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2Z"
                               stroke="currentColor"
                               strokeWidth="2"
                               strokeLinejoin="round"
-                              vectorEffect="non-scaling-stroke"
+                              strokeLinecap="round"
                             />
                           </svg>
                         </div>
@@ -312,6 +308,81 @@ export default function Home() {
         </Container>
       </section>
 
+      {/* SECTION: Trust (text left, 4 cards right) */}
+      <Section className="py-16 relative">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
+        </div>
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+            {/* LEFT: Text */}
+            <Reveal>
+              <div>
+                <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/20 to-transparent" />
+
+                <h2 className="text-h2 text-brand-900">{trustTitle}</h2>
+
+                {trustSubtitle ? (
+                  <p className="mt-3 max-w-xl text-body text-muted leading-relaxed">
+                    {trustSubtitle}
+                  </p>
+                ) : null}
+              </div>
+            </Reveal>
+
+            {/* RIGHT: Cards */}
+            <Stagger className="grid gap-4 sm:grid-cols-2 lg:justify-self-end">
+              {trustItems.slice(0, 4).map((it, idx) => {
+                const isNavy = idx === 1 || idx === 2; // 2 navy cards
+                const cardBg = isNavy
+                  ? "bg-gradient-to-br from-[#0B2F66] via-[#0A2348] to-[#071A38]"
+                  : "bg-gradient-to-br from-[#EAF6FF] via-[#D8EEFF] to-[#CBE7FF]";
+
+                const valueClass = isNavy ? "text-white" : "text-brand-900";
+                const labelClass = isNavy ? "text-white" : "text-brand-900";
+                const subClass = isNavy ? "text-white/75" : "text-brand-900/70";
+
+                return (
+                  <StaggerItem key={idx}>
+                    <div
+                      className={[
+                        "relative overflow-hidden rounded-3xl border shadow-sm",
+                        "min-h-[180px] sm:min-h-[210px]",
+                        "p-8 sm:p-10",
+                        cardBg,
+                        isNavy ? "border-white/10" : "border-brand-900/15",
+                      ].join(" ")}
+                    >
+                      {/* subtle overlay like hero */}
+                      {isNavy && (
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/25" />
+                      )}
+
+                      <div className="relative">
+                        <div className={`text-[44px] sm:text-[54px] leading-none font-semibold ${valueClass}`}>
+                          {it.value}
+                        </div>
+
+                        <div className={`mt-4 text-[16px] sm:text-[18px] font-semibold ${labelClass}`}>
+                          {it.label}
+                        </div>
+
+                        {it.subLabel ? (
+                          <div className={`mt-2 text-[13px] leading-relaxed ${subClass}`}>
+                            {it.subLabel}
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  </StaggerItem>
+                );
+              })}
+            </Stagger>
+          </div>
+        </Container>
+      </Section>
+
       {/* SECTION 1: Services preview (reduce cognitive load) */}
       <Section className="py-14 relative">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -344,7 +415,7 @@ export default function Home() {
           </Reveal>
 
           <Stagger className="mt-10 grid gap-4 sm:grid-cols-3">
-            {(home?.servicesPreview?.items || []).slice(0, 6).map((s, idx) => {
+            {(home?.servicesPreview?.items || []).slice(0, 3).map((s, idx) => {
               const isPrimary = idx < 3;
               return (
                 <StaggerItem key={idx}>
@@ -360,6 +431,17 @@ export default function Home() {
                     <p className="mt-2 text-[13px] text-muted leading-relaxed">
                       {s.desc}
                     </p>
+
+                    {s.image?.src ? (
+                      <div className="mt-5 overflow-hidden rounded-2xl border border-border bg-slate-100">
+                        <img
+                          src={s.image.src}
+                          alt={s.image.alt || s.title}
+                          className="h-[200px] w-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : null}
 
                     <div className="mt-4">
                       <Button
@@ -390,15 +472,19 @@ export default function Home() {
       </Section>
 
       {/* SECTION 2: Patient Stories preview (avatar initials) */}
-      <Section className="py-14 bg-surface">
+      <Section className="py-14 relative overflow-hidden bg-brand-900 text-white">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/35" />
+        <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-28 -left-28 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl" />
+
         <Container>
           <Reveal>
             <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/20 to-transparent" />
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <h2 className="text-h2 text-brand-900">{t("nav.stories")}</h2>
+                <h2 className="text-h2 text-white">{t("nav.stories")}</h2>
                 {home?.storiesPreview?.subtitle ? (
-                  <p className="mt-2 max-w-2xl text-body text-muted">
+                  <p className="mt-2 max-w-2xl text-body text-white/80">
                     {home.storiesPreview.subtitle}
                   </p>
                 ) : null}
@@ -407,7 +493,8 @@ export default function Home() {
               <div className="hidden sm:block">
                 <Button
                   onClick={() => navigate("/stories")}
-                  className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+                  className="rounded-full px-6 py-3 text-[14px] font-semibold min-h-[44px]"
+
                 >
                   {t("common.viewAll", "View all")}
                 </Button>
@@ -557,7 +644,11 @@ export default function Home() {
       </Section>
 
       {/* SECTION 4: FAQ preview (interactive affordance) */}
-      <Section className="py-14 bg-surface">
+      <Section className="py-14 relative">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
+        </div>
         <Container>
           <Reveal>
             <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/20 to-transparent" />

@@ -14,21 +14,44 @@ export const homeAR = {
       { value: "خطة", label: "مخصصة" },
       { value: "فريق", label: "ذو خبرة" },
     ],
-    trustItems: [
-      { value: "20+ سنة", label: "خبرة" },
-      { value: "القدم السكري", label: "تخصص" },
-      { value: "حفظ الأطراف", label: "تركيز" },
-    ],
     image: "/images/home/doctor.png",
     imageAlt: "طبيب",
   },
 
+    trust: {
+    title: "رعاية موثوقة، خبرة مثبتة",
+    subtitle: "مؤشرات رئيسية تعكس خبرتنا ونتائجنا.",
+    items: [
+      { value: "٢٠+", label: "سنوات من الخبرة", subLabel: "رعاية القدم السكري" },
+      { value: "٥٠٠٠+", label: "مرضى تم علاجهم", subLabel: "المتابعات والنتائج" },
+      { value: "٢٠٠+", label: "حالات ناجحة", subLabel: "دعم التئام الجروح" },
+      { value: "٧/٢٤", label: "إرشاد", subLabel: "الدعم والوقاية" },
+    ]
+  },
   servicesPreview: {
     subtitle: "مجموعة من أهم الخدمات المتاحة في المركز.",
     items: [
-      { title: "فحص القدم السكري", desc: "فحوصات دورية للكشف المبكر عن المشكلات." },
-      { title: "إدارة وعلاج الجروح", desc: "ضمادات وتنظيف ومكافحة العدوى." },
-      { title: "رعاية وقائية للقدم", desc: "روتين يومي وإرشادات للوقاية." },
+      {
+        title: "فحص القدم السكري", desc: "فحوصات دورية للكشف المبكر عن المشكلات.",
+        image: {
+          src: "/images/home/diabetic-foot.webp",
+          alt: "فحص القدم السكري"
+        }
+      },
+      {
+        title: "إدارة وعلاج الجروح", desc: "ضمادات وتنظيف ومكافحة العدوى.",
+        image: {
+          src: "/images/home/wound-care.jpg",
+          alt: "Wound care management"
+        }
+      },
+      {
+        title: "رعاية وقائية للقدم", desc: "روتين يومي وإرشادات للوقاية.",
+        image: {
+          src: "/images/home/footcare.jpg",
+          alt: "Preventive foot care"
+        }
+      },
       { title: "الحفاظ على الطرف", desc: "رعاية تهدف لتقليل مخاطر البتر." },
       { title: "رعاية متعددة التخصصات", desc: "تعاون لتقديم علاج متكامل." },
       { title: "طب عام", desc: "تشخيص وعلاج الأمراض الشائعة." },
