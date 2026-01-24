@@ -12,6 +12,7 @@ import Button from "../components/ui/Button";
 
 import Reveal from "../components/common/Reveal";
 import Stagger, { StaggerItem } from "../components/common/Stagger";
+import FaqAccordion from "../components/ui/FaqAccordion";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -547,7 +548,7 @@ export default function Home() {
         </Container>
       </Section>
 
-      {/* SECTION 3: About preview (value blocks instead of plain bullets) */}
+      {/* SECTION: About preview */}
       <Section className="py-14 relative">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
@@ -555,7 +556,9 @@ export default function Home() {
         </div>
 
         <Container className="relative">
-          <Grid cols={2} gap="lg" className="items-start">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+
+            {/* LEFT: Text */}
             <div>
               <Reveal>
                 <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/25 to-transparent" />
@@ -564,7 +567,7 @@ export default function Home() {
 
               {home?.aboutPreview?.subtitle ? (
                 <Reveal delay={0.10} y={14}>
-                  <p className="mt-3 text-body text-muted leading-relaxed">
+                  <p className="mt-3 text-body text-muted leading-relaxed max-w-xl">
                     {home.aboutPreview.subtitle}
                   </p>
                 </Reveal>
@@ -573,11 +576,11 @@ export default function Home() {
               {home?.aboutPreview?.bullets?.length ? (
                 <Stagger className="mt-6">
                   <ul className="space-y-3">
-                    {home.aboutPreview.bullets.slice(0, 5).map((b, idx) => (
+                    {home.aboutPreview.bullets.slice(0, 4).map((b, idx) => (
                       <StaggerItem key={idx}>
-                        <li className="flex items-start gap-3 rounded-xl border border-border bg-white/40 dark:bg-white/5 px-4 py-3">
+                        <li className="flex items-start gap-3 rounded-xl border border-border bg-white/40 px-4 py-3">
                           <span className="mt-1.5 h-2 w-2 rounded-full bg-accent shrink-0" />
-                          <div className="text-[13px] sm:text-[14px] text-muted leading-relaxed">
+                          <div className="text-[14px] text-muted leading-relaxed">
                             {b}
                           </div>
                         </li>
@@ -599,112 +602,65 @@ export default function Home() {
               </Reveal>
             </div>
 
-            <Reveal y={16} delay={0.08}>
-              <Card className="rounded-2xl border border-border bg-gradient-to-b from-surface to-bg shadow-sm">
-                <div className="text-[15px] font-semibold text-text">
-                  {site.legalName}
-                </div>
-                <div className="mt-3 space-y-3 text-[13px] text-muted">
-                  <div>
-                    <span className="font-semibold text-text">
-                      {t("common.address", "Address")}:
-                    </span>{" "}
-                    {site.address}
-                  </div>
-                  <div>
-                    <span className="font-semibold text-text">
-                      {t("common.phone", "Phone")}:
-                    </span>{" "}
-                    <span dir="ltr" style={{ unicodeBidi: "isolate" }}>
-                      {phoneDisplay}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-text">
-                      {t("common.hours", "Working hours")}:
-                    </span>{" "}
-                    {site.hours?.[0]?.time ||
-                      t("home.hoursFallback", "Sun–Thu 9:30 AM – 5:30 PM")}
+            {/* RIGHT: Image */}
+            {home?.aboutPreview?.image?.src ? (
+              <Reveal y={16} delay={0.08}>
+                <div className="relative">
+                  <div className="overflow-hidden rounded-3xl border border-border shadow-sm bg-white">
+                    <img
+                      src={home.aboutPreview.image.src}
+                      alt={home.aboutPreview.image.alt || "About"}
+                      className="w-full h-[420px] object-cover"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
-
-                <div className="mt-6">
-                  <Button
-                    variant="secondary"
-                    onClick={() => navigate("/contact")}
-                    className="rounded-full px-6 py-2.5 text-[13px] min-h-[44px]"
-                  >
-                    {t("common.contactUs", "Contact us")}
-                  </Button>
-                </div>
-              </Card>
-            </Reveal>
-          </Grid>
+              </Reveal>
+            ) : null}
+          </div>
         </Container>
       </Section>
 
-      {/* SECTION 4: FAQ preview (interactive affordance) */}
-      <Section className="py-14 relative">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
-          <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
-        </div>
-        <Container>
-          <Reveal>
-            <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/20 to-transparent" />
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h2 className="text-h2 text-brand-900">{t("nav.faq")}</h2>
-                {home?.faqPreview?.subtitle ? (
-                  <p className="mt-2 max-w-2xl text-body text-muted">
-                    {home.faqPreview.subtitle}
-                  </p>
-                ) : null}
-              </div>
+      {/* SECTION: FAQ preview (2-col + accordion) */}
+      <Section className="py-16 relative overflow-hidden bg-brand-900 text-white">
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/35" />
+          <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-28 -left-28 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl" />
 
-              <div className="hidden sm:block">
-                <Button
-                  onClick={() => navigate("/faq")}
-                  className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
-                >
-                  {t("common.viewAll", "View all")}
-                </Button>
-              </div>
-            </div>
-          </Reveal>
-
-          <Stagger className="mt-10 grid gap-4 sm:grid-cols-2">
-            {(home?.faqPreview?.items || []).slice(0, 4).map((qa, idx) => (
-              <StaggerItem key={idx}>
-                <Card
-                  className="rounded-2xl border border-border bg-gradient-to-b from-bg to-surface shadow-sm hover:shadow-md transition cursor-pointer hover:bg-brand-900/5"
-                  onClick={() => navigate("/faq")}
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="text-[15px] font-semibold text-text">
-                      {qa.q}
-                    </div>
-                    <div className="text-muted mt-1">›</div>
+          <Container className="relative">
+            <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+              {/* LEFT */}
+              <Reveal>
+                <div className="text-white">
+                  <div className="text-[20px] tracking-[0.1em] text-white/80">
+                    {t("nav.faq")}
                   </div>
-                  <p className="mt-2 text-[13px] text-muted leading-relaxed">
-                    {qa.a}
-                  </p>
-                </Card>
-              </StaggerItem>
-            ))}
-          </Stagger>
 
-          <Reveal delay={0.05} y={12}>
-            <div className="mt-8 sm:hidden">
-              <Button
-                onClick={() => navigate("/faq")}
-                className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
-              >
-                {t("common.viewAll", "View all")}
-              </Button>
+                  {/* <h2 className="mt-3 text-[40px] sm:text-[48px] leading-[1.05] font-semibold">
+                    {t("home.faqTitle")}
+                  </h2> */}
+
+                  {home?.faqPreview?.subtitle ? (
+                    <p className="mt-4 text-[40px] sm:text-[48px] leading-[1.05] font-semibold  text-white leading-relaxed">
+                      {home.faqPreview.subtitle}
+                    </p>
+                  ) : null}
+
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Button
+                      onClick={() => navigate("/contact")}
+                      className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-accent hover:bg-accent/90 text-white min-h-[44px]"
+                    >
+                      {t("common.contactUs", "Contact us")}
+                    </Button>
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* RIGHT: Accordion */}
+              <FaqAccordion items={(home?.faqPreview?.items || []).slice(0, 5)} />
             </div>
-          </Reveal>
-        </Container>
+          </Container>
       </Section>
 
       {/* SECTION 5: Blog preview (unchanged, just ensure tap targets) */}

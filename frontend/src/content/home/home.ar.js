@@ -18,7 +18,7 @@ export const homeAR = {
     imageAlt: "طبيب",
   },
 
-    trust: {
+  trust: {
     title: "رعاية موثوقة، خبرة مثبتة",
     subtitle: "مؤشرات رئيسية تعكس خبرتنا ونتائجنا.",
     items: [
@@ -88,6 +88,10 @@ export const homeAR = {
       "خطط للوقاية والمتابعة الدورية",
       "خطوات واضحة وتعليمات منزلية عملية",
     ],
+    image: {
+      src: "/images/home/about-img.webp",
+      alt: "Patient consultation"
+    }
   },
 
   faqPreview: {

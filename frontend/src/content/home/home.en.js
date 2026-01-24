@@ -91,10 +91,14 @@ export const homeEN = {
       "Hygiene, prevention, and follow-up plans",
       "Clear steps and practical home-care instructions",
     ],
+    image: {
+      src: "/images/home/about-img.webp",
+      alt: "Patient consultation"
+    }
   },
 
   faqPreview: {
-    subtitle: "Quick answers to common questions.",
+    subtitle: "Frequently Asked Questions",
     items: [
       {
         q: "Do you offer appointment booking online?",
