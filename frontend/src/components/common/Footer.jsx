@@ -168,6 +168,7 @@ export default function Footer() {
                 />
 
                 <IconText
+                  className="whitespace-pre-line"
                   icon={<PinIcon />}
                   title={t("footer.location", "Location")}
                   description={address}

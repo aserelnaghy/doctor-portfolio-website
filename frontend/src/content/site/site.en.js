@@ -1,15 +1,15 @@
 export const siteEN = {
   legalName: "Dr. Youssry Medical Center W.L.L",
   clinicName: "Dr. Youssry Medical Center",
-  address: "Block 329, Building 59, Road 2901, Salmaniya.",
-  phoneDisplay: "17270017",
-  phoneTel: "17270017",
+  address: "Building 59, Road 2901 \nBlock 329, Salmaniya \nKingdom of Bahrain",
+  phoneDisplay: "+97317270017",
+  phoneTel: "+97317270017",
 
   hours: [{ days: "Sun–Thu", time: "9:30 AM – 5:30 PM" }],
 
   socials: {
-    facebook: "https://facebook.com/",   
-    instagram: "https://instagram.com/"  
+    facebook: "https://facebook.com/",
+    instagram: "https://instagram.com/"
   },
 
   brand: {

@@ -41,17 +41,17 @@ export const homeAR = {
         }
       },
       {
-        title: "إدارة وعلاج الجروح", desc: "ضمادات وتنظيف ومكافحة العدوى.",
+        title: "علاج الجروح المزمنة", desc: "ضمادات وتنظيف ومكافحة العدوى.",
         image: {
           src: "/images/home/wound-care.jpg",
-          alt: "Wound care management"
+          alt: "علاج الجروح المزمنة"
         }
       },
       {
-        title: "رعاية وقائية للقدم", desc: "روتين يومي وإرشادات للوقاية.",
+        title: "الوقاية ومنع المضاعفات", desc: "روتين يومي وإرشادات للوقاية.",
         image: {
           src: "/images/home/footcare.jpg",
-          alt: "Preventive foot care"
+          alt: "الوقاية ومنع المضاعفات"
         }
       },
       { title: "الحفاظ على الطرف", desc: "رعاية تهدف لتقليل مخاطر البتر." },

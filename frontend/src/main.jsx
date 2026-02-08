@@ -14,6 +14,7 @@ import Stories from "./pages/Stories";
 import Blog from "./pages/Blog";
 import Faq from "./pages/Faq";
 import Contact from "./pages/Contact";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 const router = createBrowserRouter([
   {
