@@ -21,7 +21,9 @@
 
 :root {
   --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-sans-ar: Cairo, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  /* --font-sans-ar: Cairo, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; */
+  --font-sans-ar: "Poppins", Inter, system-ui, sans-serif;
+
 
   --radius-sm: 10px;
   --radius-md: 14px;
@@ -38,13 +40,16 @@
 }
 
 /* Base */
-html, body {
+html,
+body {
   font-family: var(--font-sans);
   color: var(--color-text);
   background: var(--color-bg);
 }
 
-html[dir="rtl"] body { font-family: var(--font-sans-ar); }
+html[dir="rtl"] body {
+  font-family: var(--font-sans-ar);
+}
 
 @layer utilities {
   .hero-bg {
@@ -56,14 +61,16 @@ html[dir="rtl"] body { font-family: var(--font-sans-ar); }
       linear-gradient(to bottom, rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.45));
     background-blend-mode: normal, screen, screen, screen, normal;
   }
+
   .ui-transition {
-    transition: transform 250ms cubic-bezier(.22,1,.36,1),
-                box-shadow 250ms cubic-bezier(.22,1,.36,1),
-                background-color 250ms cubic-bezier(.22,1,.36,1),
-                border-color 250ms cubic-bezier(.22,1,.36,1),
-                color 250ms cubic-bezier(.22,1,.36,1),
-                opacity 250ms cubic-bezier(.22,1,.36,1);
+    transition: transform 250ms cubic-bezier(.22, 1, .36, 1),
+      box-shadow 250ms cubic-bezier(.22, 1, .36, 1),
+      background-color 250ms cubic-bezier(.22, 1, .36, 1),
+      border-color 250ms cubic-bezier(.22, 1, .36, 1),
+      color 250ms cubic-bezier(.22, 1, .36, 1),
+      opacity 250ms cubic-bezier(.22, 1, .36, 1);
   }
+
   .hover-lift:hover {
     transform: translateY(-2px);
   }
