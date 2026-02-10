@@ -22,7 +22,7 @@ export default function BlogPreviewSection({ t, home, onNavigate }) {
           <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/25 to-transparent" />
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-h2 text-brand-900">{t("nav.blog")}</h2>
+              <h2 className="text-h2 text-brand-900">{t("nav.healthAwareness")}</h2>
               {subtitle ? (
                 <p className="mt-2 max-w-2xl text-body text-muted">{subtitle}</p>
               ) : null}
@@ -30,7 +30,7 @@ export default function BlogPreviewSection({ t, home, onNavigate }) {
 
             <div className="hidden sm:block">
               <Button
-                onClick={() => onNavigate("/blog")}
+                onClick={() => onNavigate("/health-awareness")}
                 className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
               >
                 {t("common.viewAll", "View all")}

@@ -131,8 +131,8 @@ export default function Footer() {
                 <NavLink className="text-body text-muted hover:text-brand-900" to="/stories">
                   {t("nav.stories")}
                 </NavLink>
-                <NavLink className="text-body text-muted hover:text-brand-900" to="/blog">
-                  {t("nav.blog")}
+                <NavLink className="text-body text-muted hover:text-brand-900" to="/health-awareness">
+                  {t("nav.healthAwareness")}
                 </NavLink>
                 <NavLink className="text-body text-muted hover:text-brand-900" to="/faq">
                   {t("nav.faq")}
