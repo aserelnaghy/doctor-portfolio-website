@@ -14,6 +14,10 @@ import Stories from "./pages/Stories";
 import Blog from "./pages/Blog";
 import Faq from "./pages/Faq";
 import Contact from "./pages/Contact";
+import ScrollToTop from "./components/common/ScrollToTop";
+import MedicalTeam from "./pages/MedicalTeam";
+import HealthAwareness from "./pages/HealthAwareness";
+
 
 const router = createBrowserRouter([
   {
@@ -23,9 +27,11 @@ const router = createBrowserRouter([
       { path: "/about", element: <About /> },
       { path: "/services", element: <Services /> },
       { path: "/stories", element: <Stories /> },
-      { path: "/blog", element: <Blog /> },
+      // { path: "/blog", element: <Blog /> },
       { path: "/faq", element: <Faq /> },
       { path: "/contact", element: <Contact /> },
+      { path: "/medical-team", element: <MedicalTeam /> },
+      { path: "/health-awareness", element: <HealthAwareness /> },
     ],
   },
 ]);

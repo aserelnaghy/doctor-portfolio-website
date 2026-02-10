@@ -41,23 +41,51 @@ export const homeAR = {
         }
       },
       {
-        title: "إدارة وعلاج الجروح", desc: "ضمادات وتنظيف ومكافحة العدوى.",
+        title: "علاج الجروح المزمنة", desc: "ضمادات وتنظيف ومكافحة العدوى.",
         image: {
           src: "/images/home/wound-care.jpg",
-          alt: "Wound care management"
+          alt: "علاج الجروح المزمنة"
         }
       },
       {
-        title: "رعاية وقائية للقدم", desc: "روتين يومي وإرشادات للوقاية.",
+        title: "الوقاية ومنع المضاعفات", desc: "روتين يومي وإرشادات للوقاية.",
         image: {
           src: "/images/home/footcare.jpg",
-          alt: "Preventive foot care"
+          alt: "الوقاية ومنع المضاعفات"
         }
       },
       { title: "الحفاظ على الطرف", desc: "رعاية تهدف لتقليل مخاطر البتر." },
       { title: "رعاية متعددة التخصصات", desc: "تعاون لتقديم علاج متكامل." },
       { title: "طب عام", desc: "تشخيص وعلاج الأمراض الشائعة." },
     ],
+  },
+  teamPreview: {
+    members: [
+      {
+        name: "د. أحمد يوسف",
+        specialty: "جراحة الأوعية الدموية",
+        years: "10+",
+        roleShort: "تقييم الدورة الدموية"
+      },
+      {
+        name: "د. محمد علي",
+        specialty: "رعاية الجروح",
+        years: "8+",
+        roleShort: "خطة الالتئام والضمادات"
+      },
+      {
+        name: "د. سارة محمود",
+        specialty: "القدم السكري",
+        years: "7+",
+        roleShort: "الوقاية وحماية الطرف"
+      },
+      {
+        name: "د. كريم حسن",
+        specialty: "القدم والكاحل",
+        years: "9+",
+        roleShort: "توزيع الضغط والدعم"
+      }
+    ]
   },
 
   storiesPreview: {
@@ -125,19 +153,19 @@ export const homeAR = {
         title: "قائمة يومية للعناية بالقدم السكري",
         date: "—",
         excerpt: "خطوات بسيطة يوميًا لتقليل المضاعفات.",
-        href: "/blog",
+        href: "/health-awareness",
       },
       {
         title: "متى يجب طلب المساعدة لعلاج الجروح؟",
         date: "—",
         excerpt: "علامات تحذيرية مهمة لا يجب تجاهلها.",
-        href: "/blog",
+        href: "/health-awareness",
       },
       {
         title: "اختيار الحذاء والوقاية الأساسية",
         date: "—",
         excerpt: "كيف تحميك الأحذية المناسبة والروتين اليومي.",
-        href: "/blog",
+        href: "/health-awareness",
       },
     ],
   },

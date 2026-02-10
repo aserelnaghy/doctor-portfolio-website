@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
+import ScrollToTop from "../components/common/ScrollToTop";
 
 export default function LayoutShell() {
   const { i18n } = useTranslation();
@@ -16,6 +17,7 @@ export default function LayoutShell() {
 
   return (
     <>
+      <ScrollToTop />
       <Header />
 
       {/* Push all pages below the sticky header */}
