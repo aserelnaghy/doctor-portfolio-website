@@ -59,6 +59,34 @@ export const homeAR = {
       { title: "طب عام", desc: "تشخيص وعلاج الأمراض الشائعة." },
     ],
   },
+  teamPreview: {
+    members: [
+      {
+        name: "د. أحمد يوسف",
+        specialty: "جراحة الأوعية الدموية",
+        years: "10+",
+        roleShort: "تقييم الدورة الدموية"
+      },
+      {
+        name: "د. محمد علي",
+        specialty: "رعاية الجروح",
+        years: "8+",
+        roleShort: "خطة الالتئام والضمادات"
+      },
+      {
+        name: "د. سارة محمود",
+        specialty: "القدم السكري",
+        years: "7+",
+        roleShort: "الوقاية وحماية الطرف"
+      },
+      {
+        name: "د. كريم حسن",
+        specialty: "القدم والكاحل",
+        years: "9+",
+        roleShort: "توزيع الضغط والدعم"
+      }
+    ]
+  },
 
   storiesPreview: {
     subtitle: "بعض كلمات المرضى عن تجربتهم.",

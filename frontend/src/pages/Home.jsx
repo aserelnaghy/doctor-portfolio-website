@@ -8,6 +8,7 @@ import { usePhoneActions } from "../hooks/usePhoneActions";
 import { useTrustParallax } from "../hooks/useTrustParallax";
 
 import HeroSection from "../sections/home/HeroSection";
+import TeamPreviewSection from "../sections/home/MedicalTeamSection";
 import TrustSection from "../sections/home/TrustSection";
 import ServicesPreviewSection from "../sections/home/ServicesPreviewSection";
 import StoriesPreviewSection from "../sections/home/StoriesPreviewSection";
@@ -52,6 +53,7 @@ export default function Home() {
       />
 
       <ServicesPreviewSection t={t} home={home} onNavigate={navigate} />
+      <TeamPreviewSection t={t} home={home} onNavigate={navigate} />
       <StoriesPreviewSection t={t} home={home} onNavigate={navigate} />
       <AboutPreviewSection t={t} home={home} onNavigate={navigate} />
       <FaqPreviewSection t={t} home={home} onNavigate={navigate} />

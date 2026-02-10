@@ -62,7 +62,34 @@ export const homeEN = {
       { title: "General Medicine", desc: "Diagnosis and treatment of common illnesses." },
     ],
   },
-
+  teamPreview: {
+    members: [
+      {
+        name: "Dr. Ahmed Youssef",
+        specialty: "Vascular Surgery",
+        years: "10+",
+        roleShort: "Blood flow assessment"
+      },
+      {
+        name: "Dr. Mohamed Ali",
+        specialty: "Wound Care",
+        years: "8+",
+        roleShort: "Healing plan & dressings"
+      },
+      {
+        name: "Dr. Sara Mahmoud",
+        specialty: "Diabetic Foot Care",
+        years: "7+",
+        roleShort: "Prevention & limb protection"
+      },
+      {
+        name: "Dr. Karim Hassan",
+        specialty: "Foot & Ankle",
+        years: "9+",
+        roleShort: "Pressure distribution & support"
+      }
+    ]
+  },
   storiesPreview: {
     subtitle: "A few words from patients about their experience.",
     items: [
