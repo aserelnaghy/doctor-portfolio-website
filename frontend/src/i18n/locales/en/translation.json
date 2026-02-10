@@ -1,12 +1,14 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
+    "about": "About the Center",
+    "diabeticFoot": "Diabetic Foot",
     "services": "Services",
+    "team": "Medical Team",
     "stories": "Patient Stories",
-    "blog": "Blog",
-    "faq": "FAQs",
-    "contact": "Contact"
+    "healthAwareness": "Health Awareness",
+    "faq": "FAQ",
+    "contact": "Contact Us"
   },
   "common": {
     "language": "Language",
@@ -23,7 +25,45 @@
   "home": {
     "hoursFallback": "Sun–Thu 9:30 AM – 5:30 PM",
     "finalTitle": "Need help or guidance?",
-    "finalSubtitle": "Call us or contact the clinic — we will guide you to the right next step."
+    "finalSubtitle": "Call us or contact the clinic — we will guide you to the right next step.",
+    "teamPreview": {
+      "kicker": "Our Medical Team",
+      "title": "Meet our medical team",
+      "subtitle": "Specialists working together to deliver clear, careful care.",
+      "ctaTeam": "View team",
+      "ctaBook": "Book appointment",
+      "hint": "Full details about doctors and specialties are on the Team page.",
+      "yearsBadge": "{{years}} yrs exp",
+      "detailsHint": "View details"
+    }
+  },
+  "team": {
+    "kicker": "Medical Team",
+    "title": "Meet Our Medical Team",
+    "subtitle": "Specialists working together to deliver clear, careful care.",
+
+    "searchPlaceholder": "Search by name or specialty",
+    "allSpecialties": "All specialties",
+
+    "yearsExp": "{{years}} years experience",
+
+    "contactBlock": "Contact & Availability",
+    "schedule": "Schedule",
+    "phone": "Phone",
+    "email": "Email",
+
+    "emptyTitle": "No results found",
+    "emptyHint": "Try a different search or reset filters",
+    "reset": "Reset",
+
+    "modalTitle": "Doctor details",
+    "unknownSpecialty": "Specialty",
+     "openProfile": "Open profile",
+    "profile": "Profile",
+    "book": "Book / Contact",
+    "yearsBadge": "{{years}} yrs",
+    "yearsExpShort": "{{years}} yrs exp",
+    "resultsCount": "{{count}} doctors"
   },
   "footer": {
     "tagline": "Surgery and Diabetic Foot Center",
