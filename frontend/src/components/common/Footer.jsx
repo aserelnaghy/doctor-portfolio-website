@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-import { getSiteContent } from "../../content"; // adjust if your content path differs
+import { getSiteContent } from "../../content";
 
 import Container from "../ui/Container";
 import Section from "../ui/Section";
@@ -59,7 +59,6 @@ function ClockIcon() {
 export default function Footer() {
   const { t, i18n } = useTranslation();
 
-  // pull from the same en/ar structure (siteEN/siteAR)
   const site = useMemo(() => {
     const lang = i18n.language || "en";
     return getSiteContent(lang);
@@ -71,81 +70,102 @@ export default function Footer() {
   const phoneDisplay = site?.phoneDisplay || site?.phoneTel || "";
   const phoneTel = (site?.phoneTel || phoneDisplay || "").replace(/\s+/g, "");
   const address = site?.address || "";
+  const email = site?.email || "";
 
-  // hours: supports either site.hours array OR fallback translation
   const hoursText =
     (Array.isArray(site?.hours) && site.hours[0]?.time) ||
     t("home.hoursFallback", "Sun–Thu 9:30 AM – 5:30 PM");
 
-  // socials (optional)
   const socials = site?.socials || site?.social || {};
 
   return (
-    <footer className="bg-surface">
-      <Section className="py-12">
+    <footer className="bg-surface border-t border-border">
+      <Section className="py-12 sm:py-14">
         <Container>
           <Grid cols={3} gap="lg">
-            {/* Brand / About */}
             <Stack gap="md">
               <div className="leading-tight">
-                <div className="text-body font-semibold text-brand-900">
+                <div className="text-body font-bold text-brand-900">
                   {site?.clinicName || site?.legalName || brandName}
                 </div>
-                <div className="text-small text-muted">{t("footer.tagline", brandTagline)}</div>
+                <div className="mt-1 text-small text-muted">
+                  {t("footer.tagline", brandTagline)}
+                </div>
               </div>
 
-              <p className="text-body text-muted">{t("footer.about")}</p>
+              <p className="text-body text-muted leading-7">
+                {t(
+                  "footer.about",
+                  "Specialized medical care in diabetic foot management and chronic wound treatment, with a focus on limb preservation and reducing complications through accurate assessment and structured follow-up."
+                )}
+              </p>
 
               <div className="flex flex-wrap gap-3">
                 {phoneTel ? (
                   <a href={`tel:${phoneTel}`}>
-                    <Button size="sm">{t("common.callNow", "Call now")}</Button>
+                    <Button
+                      size="sm"
+                      className="rounded-full bg-teal text-white hover:bg-teal/90"
+                    >
+                      {t("common.callNow", "Call now")}
+                    </Button>
                   </a>
                 ) : (
-                  <Button size="sm" disabled>
+                  <Button
+                    size="sm"
+                    disabled
+                    className="rounded-full bg-teal text-white"
+                  >
                     {t("common.callNow", "Call now")}
                   </Button>
                 )}
 
                 <NavLink to="/contact">
-                  <Button size="sm" variant="secondary">
+                  <Button
+                    size="sm"
+                    variant="secondary"
+                    className="rounded-full border border-border bg-white text-brand hover:bg-bg"
+                  >
                     {t("common.contactUs", "Contact us")}
                   </Button>
                 </NavLink>
               </div>
             </Stack>
 
-            {/* Quick links */}
             <Stack gap="md">
-              <div className="text-body font-semibold text-text">
+              <div className="text-body font-bold text-brand-900">
                 {t("footer.quickLinks", "Quick Links")}
               </div>
 
-              <div className="flex flex-col gap-2">
-                <NavLink className="text-body text-muted hover:text-brand-900" to="/about">
+              <div className="flex flex-col gap-2.5">
+                <NavLink className="text-body text-muted hover:text-brand" to="/about">
                   {t("nav.about")}
                 </NavLink>
-                <NavLink className="text-body text-muted hover:text-brand-900" to="/services">
+                <NavLink className="text-body text-muted hover:text-brand" to="/services">
                   {t("nav.services")}
                 </NavLink>
-                <NavLink className="text-body text-muted hover:text-brand-900" to="/stories">
+                <NavLink className="text-body text-muted hover:text-brand" to="/medical-team">
+                  {t("nav.team")}
+                </NavLink>
+                <NavLink className="text-body text-muted hover:text-brand" to="/stories">
                   {t("nav.stories")}
                 </NavLink>
-                <NavLink className="text-body text-muted hover:text-brand-900" to="/health-awareness">
+                <NavLink className="text-body text-muted hover:text-brand" to="/health-awareness">
                   {t("nav.healthAwareness")}
                 </NavLink>
-                <NavLink className="text-body text-muted hover:text-brand-900" to="/faq">
+                <NavLink className="text-body text-muted hover:text-brand" to="/faq">
                   {t("nav.faq")}
                 </NavLink>
-                <NavLink className="text-body text-muted hover:text-brand-900" to="/contact">
+                <NavLink className="text-body text-muted hover:text-brand" to="/contact">
                   {t("nav.contact")}
                 </NavLink>
               </div>
             </Stack>
 
-            {/* Contact info */}
             <Stack gap="md">
-              <div className="text-body font-semibold text-text">{t("footer.contact", "Contact")}</div>
+              <div className="text-body font-bold text-brand-900">
+                {t("footer.contact", "Contact")}
+              </div>
 
               <Stack gap="sm">
                 <IconText
@@ -162,7 +182,7 @@ export default function Footer() {
                         {phoneDisplay || phoneTel}
                       </a>
                     ) : (
-                      phoneDisplay
+                      phoneDisplay || "—"
                     )
                   }
                 />
@@ -171,7 +191,7 @@ export default function Footer() {
                   className="whitespace-pre-line"
                   icon={<PinIcon />}
                   title={t("footer.location", "Location")}
-                  description={address}
+                  description={address || "—"}
                 />
 
                 <IconText
@@ -179,12 +199,39 @@ export default function Footer() {
                   title={t("footer.hoursTitle", "Working Hours")}
                   description={hoursText}
                 />
+
+                {email ? (
+                  <IconText
+                    icon={
+                      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        />
+                        <path
+                          d="m4 8 8 6 8-6"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    }
+                    title={t("common.email", "Email")}
+                    description={
+                      <a href={`mailto:${email}`} className="hover:underline">
+                        {email}
+                      </a>
+                    }
+                  />
+                ) : null}
               </Stack>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4 pt-2">
                 {socials.facebook ? (
                   <a
-                    className="text-body text-muted hover:text-brand-900"
+                    className="text-body text-muted hover:text-brand"
                     href={socials.facebook}
                     target="_blank"
                     rel="noreferrer"
@@ -196,7 +243,7 @@ export default function Footer() {
 
                 {socials.instagram ? (
                   <a
-                    className="text-body text-muted hover:text-brand-900"
+                    className="text-body text-muted hover:text-brand"
                     href={socials.instagram}
                     target="_blank"
                     rel="noreferrer"
@@ -218,11 +265,11 @@ export default function Footer() {
             </div>
 
             <div className="text-small text-muted">
-              <NavLink className="hover:text-brand-900" to="/privacy">
+              <NavLink className="hover:text-brand" to="/privacy">
                 {t("footer.privacy", "Privacy")}
               </NavLink>
               <span className="mx-2">•</span>
-              <NavLink className="hover:text-brand-900" to="/terms">
+              <NavLink className="hover:text-brand" to="/terms">
                 {t("footer.terms", "Terms")}
               </NavLink>
             </div>

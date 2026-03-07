@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand: #003651;
-  --color-brand-900: #05182B;
-  --color-accent: #C9A27C;
+  --color-brand: #187CA7;
+  --color-brand-900: #145F7F;
+  --color-accent: #0E7490;
 
-  --color-teal: #0E7490;
-  --color-sky: #6FA7C8;
+  --color-teal: #3CBFAC;
+  --color-sky: #A4D9E8;
 
-  --color-bg: #F4F8FB;
-  --color-surface: #EBF4F9;
+  --color-bg: #ECF4F8;
+  --color-surface: #FFFFFF;
 
-  --color-text: #071723;
-  --color-muted: #475E6E;
-  --color-border: #C8D8E2;
+  --color-text: #4D646F;
+  --color-muted: #6B7A84;
+  --color-border: #D8E5EC;
 
   --color-success: #22C55E;
   --color-danger: #EF4444;
@@ -21,22 +21,20 @@
 
 :root {
   --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  /* --font-sans-ar: Cairo, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; */
-  --font-sans-ar: "Poppins", Inter, system-ui, sans-serif;
-
+  --font-sans-ar: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
   --radius-sm: 10px;
   --radius-md: 14px;
   --radius-lg: 18px;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.10);
+  --shadow-sm: 0 2px 10px rgba(24, 124, 167, 0.08);
+  --shadow-md: 0 12px 30px rgba(24, 124, 167, 0.12);
 
-  /* keep RGB triplets ONLY if you need rgba(var(...), alpha) */
-  --rgb-accent: 201 162 124;
-  --rgb-teal: 14 116 144;
-  --rgb-sky: 111 167 200;
-  --rgb-brand-900: 5 24 43;
+  --rgb-brand: 24 124 167;
+  --rgb-brand-900: 20 95 127;
+  --rgb-accent: 60 191 172;
+  --rgb-teal: 60 191 172;
+  --rgb-sky: 164 217 232;
 }
 
 /* Base */
@@ -54,16 +52,16 @@ html[dir="rtl"] body {
 @layer utilities {
   .hero-bg {
     background:
-      linear-gradient(to bottom, var(--color-brand-900) 0%, var(--color-brand-900) 100%),
-      radial-gradient(900px 520px at 70% 18%, rgba(var(--rgb-accent), 0.22), transparent 62%),
-      radial-gradient(680px 420px at 20% 80%, rgba(var(--rgb-teal), 0.18), transparent 60%),
-      radial-gradient(520px 360px at 92% 78%, rgba(var(--rgb-sky), 0.16), transparent 60%),
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.45));
-    background-blend-mode: normal, screen, screen, screen, normal;
+      linear-gradient(135deg, var(--color-brand-900) 0%, var(--color-brand) 100%),
+      radial-gradient(900px 520px at 72% 18%, rgba(var(--rgb-accent), 0.20), transparent 62%),
+      radial-gradient(680px 420px at 20% 80%, rgba(var(--rgb-sky), 0.18), transparent 60%),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.28));
+    background-blend-mode: normal, screen, screen, normal;
   }
 
   .ui-transition {
-    transition: transform 250ms cubic-bezier(.22, 1, .36, 1),
+    transition:
+      transform 250ms cubic-bezier(.22, 1, .36, 1),
       box-shadow 250ms cubic-bezier(.22, 1, .36, 1),
       background-color 250ms cubic-bezier(.22, 1, .36, 1),
       border-color 250ms cubic-bezier(.22, 1, .36, 1),

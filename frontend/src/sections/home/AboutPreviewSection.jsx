@@ -6,56 +6,61 @@ import Reveal from "../../components/common/Reveal";
 import Stagger, { StaggerItem } from "../../components/common/Stagger";
 
 export default function AboutPreviewSection({ t, home, onNavigate }) {
-  const subtitle = home?.aboutPreview?.subtitle || "";
-  const bullets = (home?.aboutPreview?.bullets || []).slice(0, 4);
-  const image = home?.aboutPreview?.image;
+  const section = home?.aboutPreview || {};
+  const subtitle = section.subtitle || "";
+  const bullets = (section.bullets || []).slice(0, 4);
+  const image = section.image;
 
   return (
-    <Section className="py-14 relative">
+    <Section className="py-14 sm:py-16 relative">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
-        <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
+        <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-sky/10 blur-3xl" />
       </div>
 
       <Container className="relative">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-          {/* LEFT */}
+        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <Reveal>
-              <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/25 to-transparent" />
-              <h2 className="text-h2 text-brand-900">{t("nav.about")}</h2>
+              <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand/25 to-transparent" />
+
+              <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-[12px] font-semibold text-brand shadow-sm">
+                {t("nav.about")}
+              </div>
+
+              <h2 className="mt-5 text-[30px] sm:text-[36px] font-bold leading-snug text-brand-900">
+                {t("home.aboutPreview.title", "نبذة عن المركز")}
+              </h2>
             </Reveal>
 
             {subtitle ? (
-              <Reveal delay={0.1} y={14}>
-                <p className="mt-3 text-body text-muted leading-relaxed max-w-xl">
+              <Reveal delay={0.08} y={14}>
+                <p className="mt-4 max-w-2xl text-[15px] leading-8 text-muted">
                   {subtitle}
                 </p>
               </Reveal>
             ) : null}
 
             {bullets.length ? (
-              <Stagger className="mt-6">
-                <ul className="space-y-3">
-                  {bullets.map((b, idx) => (
-                    <StaggerItem key={idx}>
-                      <li className="flex items-start gap-3 rounded-xl border border-border bg-white/40 px-4 py-3">
-                        <span className="mt-1.5 h-2 w-2 rounded-full bg-accent shrink-0" />
-                        <div className="text-[14px] text-muted leading-relaxed">
-                          {b}
-                        </div>
-                      </li>
-                    </StaggerItem>
-                  ))}
-                </ul>
+              <Stagger className="mt-6 grid gap-3 sm:grid-cols-2">
+                {bullets.map((b, idx) => (
+                  <StaggerItem key={idx}>
+                    <div className="rounded-2xl border border-border bg-white px-4 py-4 shadow-sm ui-transition hover-lift">
+                      <div className="flex items-start gap-3">
+                        <span className="mt-2 h-2.5 w-2.5 rounded-full bg-sky shrink-0" />
+                        <div className="text-[14px] leading-7 text-text">{b}</div>
+                      </div>
+                    </div>
+                  </StaggerItem>
+                ))}
               </Stagger>
             ) : null}
 
-            <Reveal delay={0.18} y={12}>
+            <Reveal delay={0.16} y={12}>
               <div className="mt-8">
                 <Button
                   onClick={() => onNavigate("/about")}
-                  className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+                  className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand text-white hover:bg-brand-900 min-h-[44px]"
                 >
                   {t("common.learnMore", "Learn more")}
                 </Button>
@@ -63,11 +68,11 @@ export default function AboutPreviewSection({ t, home, onNavigate }) {
             </Reveal>
           </div>
 
-          {/* RIGHT */}
           {image?.src ? (
             <Reveal y={16} delay={0.08}>
               <div className="relative">
-                <div className="overflow-hidden rounded-3xl border border-border shadow-sm bg-white hidden sm:block">
+                <div className="absolute -inset-4 rounded-[32px] bg-sky/10 blur-2xl" />
+                <div className="relative overflow-hidden rounded-3xl border border-border bg-white shadow-sm hidden sm:block">
                   <img
                     src={image.src}
                     alt={image.alt || "About"}

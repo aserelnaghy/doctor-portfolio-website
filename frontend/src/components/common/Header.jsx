@@ -26,8 +26,8 @@ function CloseIcon() {
 }
 
 const linkBase =
-  "text-[14px] font-medium text-text/80 hover:text-brand-900 transition px-3 py-2 rounded-full";
-const activeLink = "text-brand-900 bg-brand/10";
+  "text-[14px] font-medium text-text hover:text-brand transition px-3 py-2 rounded-full ui-transition";
+const activeLink = "text-brand bg-brand/10 shadow-sm";
 
 export default function Header() {
   const { t, i18n } = useTranslation();
@@ -64,7 +64,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="bg-bg/70 backdrop-blur border-b border-border/60">
+    <div className="bg-white/90 backdrop-blur border-b border-border">
         <Container className="py-3">
           <div className="flex items-center justify-between gap-4">
             {/* Brand */}
@@ -108,7 +108,7 @@ export default function Header() {
                 <div className="hidden lg:block">
                   <Button
                     onClick={callNow}
-                    className="rounded-full px-6 py-2.5 text-[13px] font-semibold bg-accent text-white"
+                    className="rounded-full px-6 py-2.5 text-[13px] font-semibold bg-brand text-white hover:bg-brand-900"
                   >
                     {t("common.callNow", "Call now")}
                   </Button>

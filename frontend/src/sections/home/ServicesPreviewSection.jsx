@@ -7,31 +7,35 @@ import Reveal from "../../components/common/Reveal";
 import Stagger, { StaggerItem } from "../../components/common/Stagger";
 
 export default function ServicesPreviewSection({ t, home, onNavigate }) {
-  const subtitle = home?.servicesPreview?.subtitle || "";
-  const items = (home?.servicesPreview?.items || []).slice(0, 3);
+  const preview = home?.servicesPreview || {};
+  const subtitle = preview.subtitle || "";
+  const items = (preview.items || []).slice(0, 3);
 
   return (
-    <Section className="py-14 relative">
+    <Section className="py-14 sm:py-16 relative">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
-        <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
+        <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-teal/10 blur-3xl" />
       </div>
 
       <Container className="relative">
         <Reveal>
-          <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-900/25 to-transparent" />
+          <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand/25 to-transparent" />
+
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="text-h2 text-brand-900">{t("nav.services")}</h2>
               {subtitle ? (
-                <p className="mt-2 max-w-2xl text-body text-muted">{subtitle}</p>
+                <p className="mt-2 max-w-2xl text-body text-muted leading-relaxed">
+                  {subtitle}
+                </p>
               ) : null}
             </div>
 
             <div className="hidden sm:block">
               <Button
                 onClick={() => onNavigate("/services")}
-                className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+                className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand text-white hover:bg-brand-900 min-h-[44px]"
               >
                 {t("common.viewAll", "View all")}
               </Button>
@@ -42,33 +46,36 @@ export default function ServicesPreviewSection({ t, home, onNavigate }) {
         <Stagger className="mt-10 grid gap-4 sm:grid-cols-3">
           {items.map((s, idx) => (
             <StaggerItem key={idx}>
-              <Card className="rounded-2xl border bg-gradient-to-b from-surface to-bg shadow-sm hover:shadow-md transition border-brand-900/30">
-                <div className="text-[15px] font-semibold text-text">
-                  {s.title}
-                </div>
-                <p className="mt-2 text-[13px] text-muted leading-relaxed">
-                  {s.desc}
-                </p>
-
+              <Card className="rounded-2xl border bg-white shadow-sm hover:shadow-md transition border-border overflow-hidden">
                 {s.image?.src ? (
-                  <div className="mt-5 overflow-hidden rounded-2xl border border-border bg-slate-100">
+                  <div className="overflow-hidden border-b border-border bg-slate-100">
                     <img
                       src={s.image.src}
                       alt={s.image.alt || s.title}
-                      className="h-[200px] w-full object-cover"
+                      className="h-[210px] w-full object-cover"
                       loading="lazy"
                     />
                   </div>
                 ) : null}
 
-                <div className="mt-4">
-                  <Button
-                    variant="secondary"
-                    onClick={() => onNavigate("/services")}
-                    className="rounded-full px-5 py-2 text-[13px] min-h-[44px]"
-                  >
-                    {t("common.learnMore", "Learn more")}
-                  </Button>
+                <div className="p-5">
+                  <div className="text-[17px] font-semibold text-brand-900 leading-snug">
+                    {s.title}
+                  </div>
+
+                  <p className="mt-3 text-[14px] text-muted leading-7">
+                    {s.desc}
+                  </p>
+
+                  <div className="mt-5">
+                    <Button
+                      variant="secondary"
+                      onClick={() => onNavigate("/services")}
+                      className="rounded-full px-5 py-2 text-[13px] min-h-[44px]"
+                    >
+                      {t("common.learnMore", "Learn more")}
+                    </Button>
+                  </div>
                 </div>
               </Card>
             </StaggerItem>
@@ -79,7 +86,7 @@ export default function ServicesPreviewSection({ t, home, onNavigate }) {
           <div className="mt-8 sm:hidden">
             <Button
               onClick={() => onNavigate("/services")}
-              className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand-900 text-white hover:bg-brand-900/90 min-h-[44px]"
+              className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand text-white hover:bg-brand-900 min-h-[44px]"
             >
               {t("common.viewAll", "View all")}
             </Button>
