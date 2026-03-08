@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 
-export default function Stagger({ children, className = "", once = true, amount = 0.2 }) {
+export default function Stagger({ children, className = "", once = true, amount = 0.05 }) {
   const reduce = useReducedMotion();
 
   return (
@@ -13,9 +13,9 @@ export default function Stagger({ children, className = "", once = true, amount 
         reduce
           ? {}
           : {
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.06 } },
-            }
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.06 } },
+          }
       }
     >
       {children}
@@ -33,9 +33,9 @@ export function StaggerItem({ children, className = "", y = 16 }) {
         reduce
           ? {}
           : {
-              hidden: { opacity: 0, y },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-            }
+            hidden: { opacity: 0, y },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+          }
       }
     >
       {children}
