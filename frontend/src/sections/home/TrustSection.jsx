@@ -29,17 +29,17 @@ export default function TrustSection({ home, onNavigate, parallax }) {
           <Reveal>
             <div>
               {trust.badge ? (
-                <div className="inline-flex items-center rounded-full border border-brand/15 bg-white/80 px-4 py-2 text-[12px] font-semibold tracking-[0.08em] text-brand shadow-sm">
+                <div className="inline-flex items-center rounded-full border border-brand/15 bg-white/80 px-4 py-2 text-badge tracking-[0.08em] text-brand shadow-sm">
                   {trust.badge}
                 </div>
               ) : null}
 
-              <h2 className="mt-5 text-[40px] sm:text-[48px] lg:text-[54px] leading-[1.05] font-bold text-brand-900">
+              <h2 className="mt-5 text-section-title leading-tight text-brand-900">
                 {trust.title || ""}
               </h2>
 
               {trust.subtitle ? (
-                <p className="mt-4 max-w-xl text-[16px] sm:text-[17px] leading-[1.9] text-muted">
+                <p className="mt-4 max-w-xl text-body leading-[1.9] text-muted">
                   {trust.subtitle}
                 </p>
               ) : null}
@@ -47,7 +47,7 @@ export default function TrustSection({ home, onNavigate, parallax }) {
               <div className="mt-8">
                 <Button
                   onClick={() => onNavigate("/about")}
-                  className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-brand hover:bg-brand-900 text-white min-h-[44px]"
+                  className="rounded-full px-8 py-3.5 text-btn bg-brand hover:bg-brand-900 text-white min-h-[44px]"
                 >
                   <span className="opacity-95">{trust.aboutButton}</span>
                 </Button>
@@ -112,14 +112,14 @@ export default function TrustSection({ home, onNavigate, parallax }) {
                       </div>
 
                       <div
-                        className={`mt-4 text-[15px] sm:text-[18px] font-semibold ${labelClass}`}
+                        className={`mt-4 text-body font-semibold ${labelClass}`}
                       >
                         {it.label}
                       </div>
 
                       {it.subLabel ? (
                         <div
-                          className={`mt-2 text-[13px] sm:text-[14px] leading-relaxed ${subClass}`}
+                          className={`mt-2 text-small leading-relaxed ${subClass}`}
                         >
                           {it.subLabel}
                         </div>

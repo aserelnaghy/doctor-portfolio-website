@@ -28,7 +28,7 @@ export default function FaqAccordion({ items = [] }) {
                                 isOpen ? "text-white" : "text-brand-900",
                             ].join(" ")}
                         >
-                            <span className="text-[16px] sm:text-[18px] font-semibold">
+                            <span className="text-card-title font-semibold">
                                 {qa.q}
                             </span>
 
@@ -57,7 +57,7 @@ export default function FaqAccordion({ items = [] }) {
                                         isOpen ? "opacity-100" : "opacity-0",
                                     ].join(" ")}
                                 >
-                                    <p className="text-[14px] leading-relaxed">
+                                    <p className="text-small leading-relaxed">
                                         {qa.a}
                                     </p>
                                 </div>

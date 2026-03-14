@@ -31,7 +31,7 @@ function FaqList({ items }) {
               onClick={() => setOpenIndex(isOpen ? -1 : idx)}
               className="w-full flex items-center justify-between gap-4 px-6 py-5 text-right"
             >
-              <span className="text-[16px] sm:text-[18px] font-semibold leading-7 text-brand-900">
+              <span className="text-card-title font-semibold leading-7 text-brand-900">
                 {item.q}
               </span>
 
@@ -47,7 +47,7 @@ function FaqList({ items }) {
 
             {isOpen ? (
               <div className="px-6 pb-6 border-t border-border">
-                <div className="pt-4 text-[14px] leading-8 text-muted">
+                <div className="pt-4 text-small leading-8 text-muted">
                   {item.a}
                 </div>
               </div>
@@ -74,17 +74,17 @@ export default function FaqPreviewSection({ t, home, onNavigate }) {
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <Reveal>
             <div className="text-white">
-              <div className="inline-flex items-center rounded-full border border-white/15 bg-white/8 px-4 py-2 text-[12px] font-semibold tracking-[0.08em] text-white/85">
+              <div className="inline-flex items-center rounded-full border border-white/15 bg-white/8 px-4 py-2 text-badge tracking-[0.08em] text-white/85">
                 {t("nav.faq")}
               </div>
 
               {subtitle ? (
-                <h2 className="mt-5 text-[34px] sm:text-[42px] lg:text-[50px] leading-[1.12] font-bold text-white">
+                <h2 className="mt-5 text-section-title leading-tight font-bold text-white">
                   {subtitle}
                 </h2>
               ) : null}
 
-              <p className="mt-4 max-w-xl text-[15px] leading-8 text-white/75">
+              <p className="mt-4 max-w-xl text-body leading-8 text-white/75">
                 {t(
                   "home.faqPreview.supportText",
                   "إجابات مختصرة وواضحة على أكثر الأسئلة شيوعاً حول القدم السكري، الوقاية، ومتى يجب طلب التقييم الطبي."
@@ -94,14 +94,14 @@ export default function FaqPreviewSection({ t, home, onNavigate }) {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button
                   onClick={() => onNavigate("/faq")}
-                  className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-teal hover:bg-teal/90 text-white min-h-[44px]"
+                  className="rounded-full px-8 py-3.5 text-btn bg-teal hover:bg-teal/90 text-white min-h-[44px]"
                 >
                   {t("common.viewAll", "View all")}
                 </Button>
 
                 <Button
                   onClick={() => onNavigate("/contact")}
-                  className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/15 min-h-[44px]"
+                  className="rounded-full px-8 py-3.5 text-btn bg-white/10 hover:bg-white/15 text-white border border-white/15 min-h-[44px]"
                 >
                   {t("common.contactUs", "Contact us")}
                 </Button>

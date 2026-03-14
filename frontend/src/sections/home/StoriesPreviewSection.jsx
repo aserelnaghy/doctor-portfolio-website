@@ -21,7 +21,7 @@ export default function StoriesPreviewSection({ t, home, onNavigate }) {
 
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-h2 text-white">{t("nav.stories")}</h2>
+              <h2 className="text-section-title text-white">{t("nav.stories")}</h2>
 
               {subtitle && (
                 <p className="mt-2 max-w-2xl text-body text-white/80">
@@ -33,7 +33,7 @@ export default function StoriesPreviewSection({ t, home, onNavigate }) {
             <div className="hidden sm:block">
               <Button
                 onClick={() => onNavigate("/stories")}
-                className="rounded-full px-7 py-3 text-[14px] font-semibold bg-teal hover:bg-teal/90 text-white min-h-[44px]"
+                className="rounded-full px-7 py-3 text-btn bg-teal hover:bg-teal/90 text-white min-h-[44px]"
               >
                 {t("common.viewAll", "View all")}
               </Button>
@@ -52,12 +52,12 @@ export default function StoriesPreviewSection({ t, home, onNavigate }) {
                 />
 
                 <div className="p-4">
-                  <div className="text-[15px] font-semibold text-white">
+                  <div className="text-body font-semibold text-white">
                     {item.title}
                   </div>
 
                   {item.patientName && (
-                    <div className="mt-1 text-[13px] text-white/70">
+                    <div className="mt-1 text-small text-white/70">
                       {item.patientName}
                     </div>
                   )}
@@ -71,7 +71,7 @@ export default function StoriesPreviewSection({ t, home, onNavigate }) {
           <div className="mt-8 sm:hidden">
             <Button
               onClick={() => onNavigate("/stories")}
-              className="rounded-full px-7 py-3 text-[14px] font-semibold bg-teal hover:bg-teal/90 text-white min-h-[44px]"
+              className="rounded-full px-7 py-3 text-btn bg-teal hover:bg-teal/90 text-white min-h-[44px]"
             >
               {t("common.viewAll", "View all")}
             </Button>

@@ -50,6 +50,58 @@ html[dir="rtl"] body {
 }
 
 @layer utilities {
+  /* Project-wide semantic type scale */
+  .text-page-title {
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  .text-section-title,
+  .text-h2 {
+    font-size: 24px;
+    font-weight: 700;
+
+  }
+
+  .text-card-title {
+    font-size: 18px;
+  }
+
+  .text-body {
+    font-size: 15px;
+  }
+
+  .text-small {
+    font-size: 13px;
+  }
+
+  .text-badge {
+    font-size: 12px;
+  }
+
+  .text-btn {
+    font-size: 14px;
+  }
+
+  @media (min-width: 1024px) {
+    .text-page-title {
+      font-size: 44px;
+    }
+
+    .text-section-title,
+    .text-h2 {
+      font-size: 30px;
+    }
+
+    .text-card-title {
+      font-size: 20px;
+    }
+
+    .text-body {
+      font-size: 16px;
+    }
+  }
+
   .hero-bg {
     background:
       linear-gradient(135deg, var(--color-brand-900) 0%, var(--color-brand) 100%),

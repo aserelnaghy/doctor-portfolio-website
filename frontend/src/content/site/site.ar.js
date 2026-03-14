@@ -13,9 +13,9 @@ export const siteAR = {
   },
 
   brand: {
-    name: "د. يسري",
-    tagline: "المركز الطبي",
-    logo: "/logos/logo.svg",
+    name: "مركز د. يسري الطبي",
+    tagline: "",
+    logo: "/logos/logo2.jpg",
     logoAlt: "مركز د. يسري الطبي"
   },
 

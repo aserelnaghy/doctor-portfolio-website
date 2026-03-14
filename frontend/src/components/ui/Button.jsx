@@ -23,8 +23,8 @@ export default function Button({
 
   const sizes = {
     sm: "h-9 px-3 text-small",
-    md: "h-10 px-4 text-body",
-    lg: "h-11 px-5 text-body",
+    md: "h-10 px-4 text-btn",
+    lg: "h-11 px-5 text-btn",
   };
 
   return (

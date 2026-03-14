@@ -42,7 +42,7 @@ function FaqList({ items, dark = false }) {
                     : "text-brand-900",
               ].join(" ")}
             >
-              <span className="text-[16px] sm:text-[18px] font-semibold leading-7">
+              <span className="text-body font-semibold leading-7">
                 {item.q}
               </span>
 
@@ -64,7 +64,7 @@ function FaqList({ items, dark = false }) {
               <div className="px-6 pb-6">
                 <div
                   className={[
-                    "text-[14px] leading-8",
+                    "text-small leading-8",
                     dark ? "text-white/80" : "text-white",
                   ].join(" ")}
                 >
@@ -104,16 +104,16 @@ export default function Faq() {
           <Reveal>
             <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
 
-            <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-[12px] font-semibold text-brand shadow-sm">
+            <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-badge text-brand shadow-sm">
               {t("nav.faq")}
             </div>
 
-            <h1 className="mt-5 text-[34px] sm:text-[44px] font-bold text-brand-900 leading-tight">
+            <h1 className="mt-5 text-page-title text-brand-900 leading-tight">
               {data.title || t("nav.faq")}
             </h1>
 
             {data.subtitle ? (
-              <p className="mt-4 max-w-3xl text-[15px] leading-8 text-muted">
+              <p className="mt-4 max-w-3xl text-body text-muted">
                 {data.subtitle}
               </p>
             ) : null}
@@ -129,10 +129,10 @@ export default function Faq() {
             <div className="mt-10 rounded-3xl bg-brand-900 px-6 py-8 text-white shadow-sm sm:px-8">
               <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
                 <div>
-                  <h2 className="text-[24px] sm:text-[28px] font-bold">
+                  <h2 className="text-section-title">
                     {data.cta?.title || t("faq.cta.title", "Still need help?")}
                   </h2>
-                  <p className="mt-3 text-[14px] leading-8 text-white/80">
+                  <p className="mt-3 text-small leading-8 text-white/80">
                     {data.cta?.subtitle ||
                       t(
                         "faq.cta.subtitle",
@@ -144,7 +144,7 @@ export default function Faq() {
                 <div className="flex flex-wrap gap-3">
                   <Button
                     onClick={() => navigate("/contact")}
-                    className="rounded-full px-7 py-3 text-[14px] font-semibold bg-teal hover:bg-teal/90 text-white min-h-[44px]"
+                    className="rounded-full px-7 py-3 text-btn bg-teal hover:bg-teal/90 text-white min-h-[44px]"
                   >
                     {t("common.contactUs", "Contact us")}
                   </Button>

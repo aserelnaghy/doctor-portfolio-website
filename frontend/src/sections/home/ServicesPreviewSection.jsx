@@ -24,7 +24,7 @@ export default function ServicesPreviewSection({ t, home, onNavigate }) {
 
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-h2 text-brand-900">{t("nav.services")}</h2>
+              <h2 className="text-section-title text-brand-900">{t("nav.services")}</h2>
               {subtitle ? (
                 <p className="mt-2 max-w-2xl text-body text-muted leading-relaxed">
                   {subtitle}
@@ -35,7 +35,7 @@ export default function ServicesPreviewSection({ t, home, onNavigate }) {
             <div className="hidden sm:block">
               <Button
                 onClick={() => onNavigate("/services")}
-                className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand text-white hover:bg-brand-900 min-h-[44px]"
+                className="rounded-full px-7 py-3 text-btn bg-brand text-white hover:bg-brand-900 min-h-[44px]"
               >
                 {t("common.viewAll", "View all")}
               </Button>
@@ -59,11 +59,11 @@ export default function ServicesPreviewSection({ t, home, onNavigate }) {
                 ) : null}
 
                 <div className="p-5">
-                  <div className="text-[17px] font-semibold text-brand-900 leading-snug">
+                  <div className="text-card-title font-semibold text-brand-900 leading-snug">
                     {s.title}
                   </div>
 
-                  <p className="mt-3 text-[14px] text-muted leading-7">
+                  <p className="mt-3 text-small text-muted leading-7">
                     {s.desc}
                   </p>
 
@@ -71,7 +71,7 @@ export default function ServicesPreviewSection({ t, home, onNavigate }) {
                     <Button
                       variant="secondary"
                       onClick={() => onNavigate("/services")}
-                      className="rounded-full px-5 py-2 text-[13px] min-h-[44px]"
+                      className="rounded-full px-5 py-2 text-small min-h-[44px]"
                     >
                       {t("common.learnMore", "Learn more")}
                     </Button>
@@ -86,7 +86,7 @@ export default function ServicesPreviewSection({ t, home, onNavigate }) {
           <div className="mt-8 sm:hidden">
             <Button
               onClick={() => onNavigate("/services")}
-              className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand text-white hover:bg-brand-900 min-h-[44px]"
+              className="rounded-full px-7 py-3 text-btn bg-brand text-white hover:bg-brand-900 min-h-[44px]"
             >
               {t("common.viewAll", "View all")}
             </Button>

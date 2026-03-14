@@ -13,7 +13,7 @@ export default function Badge({
   return (
     <span
       className={[
-        "inline-flex items-center rounded-sm px-2.5 py-1 text-small font-medium",
+        "inline-flex items-center rounded-sm px-2.5 py-1 text-badge font-medium",
         variants[variant],
         className,
       ].join(" ")}

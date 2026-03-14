@@ -15,28 +15,28 @@ function TeamPageCard({ member, idx }) {
         {idx + 1}
       </div>
 
-      <h3 className="mt-5 text-[22px] font-bold text-brand-900">
+      <h3 className="mt-5 text-card-title font-bold text-brand-900">
         {member.name}
       </h3>
 
-      <div className="mt-2 text-[15px] font-medium text-brand">
+      <div className="mt-2 text-body font-medium text-brand">
         {member.specialty}
       </div>
 
       {member.years ? (
-        <div className="mt-3 inline-flex rounded-full bg-brand/8 px-3 py-1 text-[12px] font-semibold text-brand">
+        <div className="mt-3 inline-flex rounded-full bg-brand/8 px-3 py-1 text-badge text-brand">
           {member.years}
         </div>
       ) : null}
 
       {member.roleShort ? (
-        <p className="mt-4 text-[14px] leading-7 text-muted">
+        <p className="mt-4 text-small leading-7 text-muted">
           {member.roleShort}
         </p>
       ) : null}
 
       {member.description ? (
-        <p className="mt-4 text-[14px] leading-8 text-muted">
+        <p className="mt-4 text-small leading-8 text-muted">
           {member.description}
         </p>
       ) : null}
@@ -67,16 +67,16 @@ export default function MedicalTeam() {
           <Reveal>
             <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
 
-            <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-[12px] font-semibold text-brand shadow-sm">
+            <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-badge text-brand shadow-sm">
               {data.badge}
             </div>
 
-            <h1 className="mt-5 text-[34px] sm:text-[44px] font-bold text-brand-900 leading-tight">
+            <h1 className="mt-5 text-page-title text-brand-900 leading-tight">
               {data.title}
             </h1>
 
             {data.subtitle ? (
-              <p className="mt-4 max-w-3xl text-[15px] leading-8 text-muted">
+              <p className="mt-4 max-w-3xl text-body leading-8 text-muted">
                 {data.subtitle}
               </p>
             ) : null}
@@ -85,11 +85,11 @@ export default function MedicalTeam() {
           {data.approach ? (
             <Reveal delay={0.05}>
               <div className="mt-10 rounded-3xl border border-border bg-white p-8 shadow-sm">
-                <h2 className="text-[24px] font-bold text-brand-900">
+                <h2 className="text-section-title font-bold text-brand-900">
                   {data.approach.title}
                 </h2>
 
-                <p className="mt-4 text-[15px] leading-8 text-muted">
+                <p className="mt-4 text-body leading-8 text-muted">
                   {data.approach.description}
                 </p>
 
@@ -98,7 +98,7 @@ export default function MedicalTeam() {
                     {data.approach.points.map((point, idx) => (
                       <div
                         key={idx}
-                        className="rounded-2xl border border-border bg-bg px-5 py-4 text-[14px] leading-7 text-text"
+                        className="rounded-2xl border border-border bg-bg px-5 py-4 text-small leading-7 text-text"
                       >
                         {point}
                       </div>

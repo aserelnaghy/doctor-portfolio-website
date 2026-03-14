@@ -46,30 +46,30 @@ function TeamMiniCard({ m, detailsLabel, yearsLabel, onClick }) {
       <div className="relative p-6">
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <div className="text-[17px] font-semibold text-brand-900 truncate">
+            <div className="text-card-title font-semibold text-brand-900 truncate">
               {m.name}
             </div>
-            <div className="mt-1 text-[13px] text-muted truncate">
+            <div className="mt-1 text-small text-muted truncate">
               {m.specialty}
             </div>
           </div>
 
-          <div className="h-11 w-11 rounded-2xl bg-brand text-white grid place-items-center text-[13px] font-semibold shrink-0 transition-transform duration-200 group-hover:scale-105">
+          <div className="h-11 w-11 rounded-2xl bg-brand text-white grid place-items-center text-small font-semibold shrink-0 transition-transform duration-200 group-hover:scale-105">
             {initial}
           </div>
         </div>
 
-        <div className="mt-4 flex items-center gap-2 text-[13px] text-muted">
+        <div className="mt-4 flex items-center gap-2 text-small text-muted">
           <span className="h-2 w-2 rounded-full bg-teal shrink-0 transition-transform duration-200 group-hover:scale-110" />
           <span className="truncate">{m.roleShort}</span>
         </div>
 
         <div className="mt-5 flex items-center justify-between gap-3">
-          <span className="rounded-full bg-brand/8 px-3 py-1 text-[12px] font-semibold text-brand whitespace-nowrap transition-colors duration-200 group-hover:bg-brand/12">
+          <span className="rounded-full bg-brand/8 px-3 py-1 text-badge text-brand whitespace-nowrap transition-colors duration-200 group-hover:bg-brand/12">
             {yearsLabel}
           </span>
 
-          <span className="text-[12px] text-brand opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+          <span className="text-badge text-brand opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
             {detailsLabel}
           </span>
         </div>
@@ -122,15 +122,15 @@ export default function TeamPreviewSection({ home }) {
         <Reveal>
           <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
             <div className={isRTL ? "text-right" : "text-left"}>
-              <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-[12px] font-semibold text-brand shadow-sm">
+              <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-badge text-brand shadow-sm">
                 {kicker}
               </div>
 
-              <h2 className="mt-4 text-[28px] sm:text-[34px] font-bold text-brand-900 leading-snug">
+              <h2 className="mt-4 text-section-title text-brand-900 leading-snug">
                 {title}
               </h2>
 
-              <p className="mt-3 text-[14px] sm:text-[15px] text-muted leading-8 max-w-2xl">
+              <p className="mt-3 text-body text-muted leading-8 max-w-2xl">
                 {subtitle}
               </p>
             </div>
@@ -139,7 +139,7 @@ export default function TeamPreviewSection({ home }) {
               <div className="flex flex-wrap gap-3 lg:justify-end items-center">
                 <Button
                   onClick={() => navigate("/medical-team")}
-                  className="rounded-full px-7 py-2.5 text-[14px] font-semibold bg-brand text-white hover:bg-brand-900 min-h-[44px]"
+                  className="rounded-full px-7 py-2.5 text-btn bg-brand text-white hover:bg-brand-900 min-h-[44px]"
                 >
                   {ctaTeam}
                 </Button>
@@ -165,7 +165,7 @@ export default function TeamPreviewSection({ home }) {
           </Stagger>
 
           <Reveal delay={0.08}>
-            <div className="mt-6 text-[12px] text-muted">
+            <div className="mt-6 text-badge text-muted">
               {hint}
             </div>
           </Reveal>

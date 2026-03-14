@@ -101,13 +101,13 @@ export default function HeroSection({
             <div className="max-w-[620px] pt-4 sm:pt-6">
 
               <Reveal>
-                <div className="text-[11px] sm:text-[12px] tracking-[0.25em] uppercase text-white/70">
+                <div className="text-badge sm:text-body tracking-[0.25em] uppercase text-white/70">
                   {vm.kicker}
                 </div>
               </Reveal>
 
               <Reveal delay={0.06} y={24}>
-                <h1 className="mt-4 text-[46px] sm:text-[60px] leading-[1.02] font-bold">
+                <h1 className="mt-4 text-page-title leading-[1.1]">
                   {vm.title}
                 </h1>
               </Reveal>
@@ -138,14 +138,14 @@ export default function HeroSection({
 
                   <Button
                     onClick={onCallNow}
-                    className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-brand hover:bg-brand-900 text-white shadow-sm min-h-[44px]"
+                    className="rounded-full px-8 py-3.5 text-btn bg-brand hover:bg-brand-900 text-white shadow-sm min-h-[44px]"
                   >
                     {vm.primaryLabel}
                   </Button>
 
                   <Button
                     onClick={() => onNavigate("/services")}
-                    className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/15 min-h-[44px]"
+                    className="rounded-full px-8 py-3.5 text-btn bg-white/10 hover:bg-white/15 text-white border border-white/15 min-h-[44px]"
                   >
                     {vm.secondaryLabel}
                   </Button>
@@ -162,7 +162,7 @@ export default function HeroSection({
                       {vm.stats.map((s, idx) => (
                         <StaggerItem key={idx} y={10}>
                           <div>
-                            <div className="text-2xl font-semibold">{s.value}</div>
+                            <div className="text-lg sm:text-xl font-semibold">{s.value}</div>
                             <div className="mt-1 text-small text-white/75">
                               {s.label}
                             </div>
@@ -210,14 +210,14 @@ export default function HeroSection({
                     </div>
 
                     <div className="min-w-0">
-                      <div className="text-[16px] sm:text-[17px] font-semibold">
+                      <div className="text-body font-semibold">
                         {t("common.phone", "Phone")}
                       </div>
 
                       <a
                         href={phoneTel ? `tel:${phoneTel}` : undefined}
                         dir="ltr"
-                        className="mt-1 block text-[14px] text-muted hover:underline"
+                        className="mt-1 block text-small text-muted hover:underline"
                         style={{ unicodeBidi: "isolate" }}
                       >
                         {phoneDisplay || "+20 …"}
@@ -249,11 +249,11 @@ export default function HeroSection({
                     </div>
 
                     <div className="min-w-0">
-                      <div className="text-[16px] sm:text-[17px] font-semibold">
+                      <div className="text-body font-semibold">
                         {t("common.hours", "Working hours")}
                       </div>
 
-                      <div className="mt-1 text-[14px] text-muted">
+                      <div className="mt-1 text-small text-muted">
                         {vm.hours}
                       </div>
 
@@ -264,7 +264,7 @@ export default function HeroSection({
                   <div className="flex flex-col items-center justify-center gap-3 sm:px-8 sm:py-2">
                     <Button
                       onClick={() => onNavigate("/contact")}
-                      className="rounded-full px-10 py-4 text-[15px] font-semibold bg-brand hover:bg-brand-900 text-white min-h-[48px]"
+                      className="rounded-full px-10 py-4 text-btn font-semibold bg-brand hover:bg-brand-900 text-white min-h-[48px]"
                     >
                       {t("common.contactUs", "Contact us")}
                     </Button>

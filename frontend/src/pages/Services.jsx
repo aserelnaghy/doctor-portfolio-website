@@ -34,7 +34,7 @@ export default function Services() {
           <Reveal>
             <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
 
-            <h1 className="text-[34px] sm:text-[44px] font-bold text-brand-900 leading-tight">
+            <h1 className="text-page-title text-brand-900 leading-tight">
               {data.title || t("nav.services")}
             </h1>
 

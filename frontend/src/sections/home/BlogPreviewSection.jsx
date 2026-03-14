@@ -23,7 +23,7 @@ export default function BlogPreviewSection({ t, home, onNavigate }) {
 
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-h2 text-brand-900">{t("nav.healthAwareness")}</h2>
+              <h2 className="text-section-title text-brand-900">{t("nav.healthAwareness")}</h2>
               {subtitle ? (
                 <p className="mt-2 max-w-2xl text-body text-muted leading-relaxed">
                   {subtitle}
@@ -34,7 +34,7 @@ export default function BlogPreviewSection({ t, home, onNavigate }) {
             <div className="hidden sm:block">
               <Button
                 onClick={() => onNavigate("/health-awareness")}
-                className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand text-white hover:bg-brand-900 min-h-[44px]"
+                className="rounded-full px-7 py-3 text-btn bg-brand text-white hover:bg-brand-900 min-h-[44px]"
               >
                 {t("common.viewAll", "View all")}
               </Button>
@@ -47,19 +47,19 @@ export default function BlogPreviewSection({ t, home, onNavigate }) {
             <StaggerItem key={idx}>
               <Card className="rounded-2xl border border-border bg-white shadow-sm hover:shadow-md transition overflow-hidden">
                 <div className="p-5">
-                  <div className="inline-flex items-center rounded-full bg-teal/10 px-3 py-1 text-[11px] font-semibold text-teal">
+                  <div className="inline-flex items-center rounded-full bg-teal/10 px-3 py-1 text-badge text-teal">
                     {t("nav.healthAwareness")}
                   </div>
 
-                  <div className="mt-4 text-[17px] font-semibold leading-snug text-brand-900">
+                  <div className="mt-4 text-card-title font-semibold leading-snug text-brand-900">
                     {p.title}
                   </div>
 
                   {p.date ? (
-                    <div className="mt-2 text-[12px] text-muted">{p.date}</div>
+                    <div className="mt-2 text-badge text-muted">{p.date}</div>
                   ) : null}
 
-                  <p className="mt-3 text-[14px] text-muted leading-7">
+                  <p className="mt-3 text-small text-muted leading-7">
                     {p.excerpt}
                   </p>
 
@@ -67,7 +67,7 @@ export default function BlogPreviewSection({ t, home, onNavigate }) {
                     <Button
                       variant="secondary"
                       onClick={() => onNavigate(p.href || "/health-awareness")}
-                      className="rounded-full px-5 py-2 text-[13px] min-h-[44px]"
+                      className="rounded-full px-5 py-2 text-small min-h-[44px]"
                     >
                       {t("common.readMore", "Read more")}
                     </Button>
@@ -82,7 +82,7 @@ export default function BlogPreviewSection({ t, home, onNavigate }) {
           <div className="mt-8 sm:hidden">
             <Button
               onClick={() => onNavigate("/health-awareness")}
-              className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand text-white hover:bg-brand-900 min-h-[44px]"
+              className="rounded-full px-7 py-3 text-btn bg-brand text-white hover:bg-brand-900 min-h-[44px]"
             >
               {t("common.viewAll", "View all")}
             </Button>

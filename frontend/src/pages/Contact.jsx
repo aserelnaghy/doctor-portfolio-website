@@ -80,8 +80,8 @@ function InfoCard({ icon, title, children }) {
         </div>
 
         <div className="min-w-0 flex-1">
-          <h3 className="text-[18px] font-bold text-brand-900">{title}</h3>
-          <div className="mt-3 text-[14px] leading-8 text-muted">{children}</div>
+          <h3 className="text-card-title font-bold text-brand-900">{title}</h3>
+          <div className="mt-3 text-small leading-8 text-muted">{children}</div>
         </div>
       </div>
     </div>
@@ -128,16 +128,16 @@ export default function Contact() {
           <Reveal>
             <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
 
-            <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-[12px] font-semibold text-brand shadow-sm">
+            <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-badge text-brand shadow-sm">
               {t("nav.contact")}
             </div>
 
-            <h1 className="mt-5 text-[34px] sm:text-[44px] font-bold text-brand-900 leading-tight">
+            <h1 className="mt-5 text-page-title text-brand-900 leading-tight">
               {contact.title || t("nav.contact")}
             </h1>
 
             {contact.description ? (
-              <p className="mt-4 max-w-3xl text-[15px] leading-8 text-muted">
+              <p className="mt-4 max-w-3xl text-body text-muted">
                 {contact.description}
               </p>
             ) : null}
@@ -152,11 +152,11 @@ export default function Contact() {
             <Reveal delay={0.05}>
               <div className={isRTL ? "lg:order-2" : "lg:order-1"}>
                 <div className="rounded-3xl border border-border bg-white p-6 shadow-sm h-full">
-                  <h2 className="text-[22px] font-bold text-brand-900">
+                  <h2 className="text-card-title font-bold text-brand-900">
                     {t("contact.quickReach", "Quick Reach")}
                   </h2>
 
-                  <p className="mt-3 text-[14px] leading-8 text-muted">
+                  <p className="mt-3 text-small leading-8 text-muted">
                     {t(
                       "contact.quickReachText",
                       "Call the center directly or use the location details below to reach the clinic."
@@ -167,7 +167,7 @@ export default function Contact() {
                     {phoneTel ? (
                       <Button
                         onClick={() => (window.location.href = `tel:${phoneTel}`)}
-                        className="rounded-full px-7 py-3 text-[14px] font-semibold bg-teal hover:bg-teal/90 text-white min-h-[44px]"
+                        className="rounded-full px-7 py-3 text-btn bg-teal hover:bg-teal/90 text-white min-h-[44px]"
                       >
                         {t("common.callNow", "Call now")}
                       </Button>
@@ -176,7 +176,7 @@ export default function Contact() {
                     {mapUrl ? (
                       <Button
                         onClick={() => window.open(mapUrl, "_blank", "noopener,noreferrer")}
-                        className="rounded-full px-7 py-3 text-[14px] font-semibold bg-white text-brand border border-border hover:bg-bg min-h-[44px]"
+                        className="rounded-full px-7 py-3 text-btn bg-white text-brand border border-border hover:bg-bg min-h-[44px]"
                       >
                         {t("contact.openMap", "Open map")}
                       </Button>
@@ -193,7 +193,7 @@ export default function Contact() {
                         referrerPolicy="no-referrer-when-downgrade"
                       />
                     ) : (
-                      <div className="flex h-[320px] items-center justify-center p-6 text-center text-[14px] leading-8 text-muted">
+                      <div className="flex h-[320px] items-center justify-center p-6 text-center text-small leading-8 text-muted">
                         {address || t("contact.mapFallback", "Map location can be added here.")}
                       </div>
                     )}

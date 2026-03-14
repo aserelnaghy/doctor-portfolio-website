@@ -24,18 +24,18 @@ export default function AboutPreviewSection({ t, home, onNavigate }) {
             <Reveal>
               <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand/25 to-transparent" />
 
-              <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-[12px] font-semibold text-brand shadow-sm">
+              <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-badge text-brand shadow-sm">
                 {t("nav.about")}
               </div>
 
-              <h2 className="mt-5 text-[30px] sm:text-[36px] font-bold leading-snug text-brand-900">
+              <h2 className="mt-5 text-section-title leading-snug text-brand-900">
                 {t("home.aboutPreview.title", "نبذة عن المركز")}
               </h2>
             </Reveal>
 
             {subtitle ? (
               <Reveal delay={0.08} y={14}>
-                <p className="mt-4 max-w-2xl text-[15px] leading-8 text-muted">
+                <p className="mt-4 max-w-2xl text-body leading-8 text-muted">
                   {subtitle}
                 </p>
               </Reveal>
@@ -48,7 +48,7 @@ export default function AboutPreviewSection({ t, home, onNavigate }) {
                     <div className="rounded-2xl border border-border bg-white px-4 py-4 shadow-sm ui-transition hover-lift">
                       <div className="flex items-start gap-3">
                         <span className="mt-2 h-2.5 w-2.5 rounded-full bg-sky shrink-0" />
-                        <div className="text-[14px] leading-7 text-text">{b}</div>
+                        <div className="text-small leading-7 text-text">{b}</div>
                       </div>
                     </div>
                   </StaggerItem>
@@ -60,7 +60,7 @@ export default function AboutPreviewSection({ t, home, onNavigate }) {
               <div className="mt-8">
                 <Button
                   onClick={() => onNavigate("/about")}
-                  className="rounded-full px-7 py-3 text-[14px] font-semibold bg-brand text-white hover:bg-brand-900 min-h-[44px]"
+                  className="rounded-full px-7 py-3 text-btn bg-brand text-white hover:bg-brand-900 min-h-[44px]"
                 >
                   {t("common.learnMore", "Learn more")}
                 </Button>

@@ -20,7 +20,7 @@ function VideoModal({ open, onClose, item }) {
         <button
           type="button"
           onClick={onClose}
-          className="absolute left-4 top-4 z-10 rounded-full bg-black/60 px-3 py-1 text-sm text-white"
+          className="absolute left-4 top-4 z-10 rounded-full bg-black/60 px-3 py-1 text-small text-white"
         >
           ✕
         </button>
@@ -44,11 +44,11 @@ function VideoModal({ open, onClose, item }) {
         </div>
 
         <div className="p-5">
-          <h3 className="text-[20px] font-bold text-brand-900">
+          <h3 className="text-card-title font-bold text-brand-900">
             {item.title}
           </h3>
           {item.patientName && (
-            <p className="mt-2 text-[14px] text-muted">{item.patientName}</p>
+            <p className="mt-2 text-small text-muted">{item.patientName}</p>
           )}
         </div>
       </div>
@@ -83,16 +83,16 @@ export default function Stories() {
             <Reveal>
               <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
 
-              <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-[12px] font-semibold text-brand shadow-sm">
+              <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-badge text-brand shadow-sm">
                 {t("nav.stories")}
               </div>
 
-              <h1 className="mt-5 text-[34px] sm:text-[44px] font-bold text-brand-900 leading-tight">
+              <h1 className="mt-5 text-page-title text-brand-900 leading-tight">
                 {data.title || t("nav.stories")}
               </h1>
 
               {data.subtitle && (
-                <p className="mt-4 max-w-3xl text-[15px] leading-8 text-muted">
+                <p className="mt-4 max-w-3xl text-body text-muted">
                   {data.subtitle}
                 </p>
               )}
@@ -114,12 +114,12 @@ export default function Stories() {
                       />
 
                       <div className="p-5">
-                        <h3 className="text-[18px] font-semibold leading-snug text-brand-900">
+                        <h3 className="text-card-title leading-snug text-brand-900">
                           {item.title}
                         </h3>
 
                         {item.patientName && (
-                          <div className="mt-2 text-[13px] text-muted">
+                          <div className="mt-2 text-small text-muted">
                             {item.patientName}
                           </div>
                         )}

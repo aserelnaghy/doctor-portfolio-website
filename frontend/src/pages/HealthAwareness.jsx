@@ -10,8 +10,8 @@ import Stagger, { StaggerItem } from "../components/common/Stagger";
 function InfoCard({ title, children }) {
   return (
     <div className="rounded-3xl border border-border bg-white p-7 shadow-sm">
-      <h3 className="text-[22px] font-bold text-brand-900">{title}</h3>
-      <div className="mt-4 text-[15px] leading-8 text-muted">{children}</div>
+      <h3 className="text-card-title font-bold text-brand-900">{title}</h3>
+      <div className="mt-4 text-body leading-8 text-muted">{children}</div>
     </div>
   );
 }
@@ -40,11 +40,11 @@ export default function HealthAwareness() {
           <Reveal>
             <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
 
-            <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-[12px] font-semibold text-brand shadow-sm">
+            <div className="inline-flex items-center rounded-full border border-brand/15 bg-white px-4 py-2 text-badge text-brand shadow-sm">
               {t("nav.healthAwareness")}
             </div>
 
-            <h1 className="mt-5 text-[34px] sm:text-[44px] font-bold text-brand-900 leading-tight">
+            <h1 className="mt-5 text-page-title text-brand-900 leading-tight">
               {data.title || t("nav.healthAwareness")}
             </h1>
           </Reveal>
@@ -66,7 +66,7 @@ export default function HealthAwareness() {
           {data.whenToSeeDoctor ? (
             <Reveal delay={0.05}>
               <div className="mt-8 rounded-3xl border border-border bg-white p-7 shadow-sm">
-                <h2 className="text-[24px] font-bold text-brand-900">
+                <h2 className="text-section-title text-brand-900">
                   {data.whenToSeeDoctor.title}
                 </h2>
 
@@ -74,7 +74,7 @@ export default function HealthAwareness() {
                   {(data.whenToSeeDoctor.items || []).map((item, idx) => (
                     <div
                       key={idx}
-                      className="rounded-2xl border border-border bg-bg px-5 py-4 text-[14px] leading-7 text-text"
+                      className="rounded-2xl border border-border bg-bg px-5 py-4 text-small leading-7 text-text"
                     >
                       {item}
                     </div>
@@ -87,10 +87,10 @@ export default function HealthAwareness() {
           {data.earlyDetection ? (
             <Reveal delay={0.07}>
               <div className="mt-8 rounded-3xl border border-border bg-white p-7 shadow-sm">
-                <h2 className="text-[24px] font-bold text-brand-900">
+                <h2 className="text-section-title text-brand-900">
                   {data.earlyDetection.title}
                 </h2>
-                <p className="mt-4 text-[15px] leading-8 text-muted">
+                <p className="mt-4 text-body leading-8 text-muted">
                   {data.earlyDetection.description}
                 </p>
               </div>
@@ -101,7 +101,7 @@ export default function HealthAwareness() {
             <Reveal delay={0.09}>
               <div className="mt-8 rounded-3xl border border-sky bg-sky/15 px-7 py-8 shadow-sm">
 
-                <h2 className="text-[24px] font-bold text-brand-900">
+                <h2 className="text-section-title text-brand-900">
                   {data.prevention.title}
                 </h2>
 
@@ -109,7 +109,7 @@ export default function HealthAwareness() {
                   {(data.prevention.tips || []).map((tip, idx) => (
                     <div
                       key={idx}
-                      className="rounded-2xl border border-sky bg-white px-5 py-4 text-[14px] leading-7 text-text"
+                      className="rounded-2xl border border-sky bg-white px-5 py-4 text-small leading-7 text-text"
                     >
                       {tip}
                     </div>
@@ -126,11 +126,11 @@ export default function HealthAwareness() {
                 
                 <span className="absolute top-0 bottom-0 start-0 w-1 bg-danger rounded-s-3xl"></span>
 
-                <h2 className="text-[24px] font-bold text-danger">
+                <h2 className="text-section-title text-danger">
                   {data.whenToWorry.title}
                 </h2>
 
-                <p className="mt-4 text-[15px] leading-8 text-text">
+                <p className="mt-4 text-body leading-8 text-text">
                   {data.whenToWorry.description}
                 </p>
 
@@ -141,7 +141,7 @@ export default function HealthAwareness() {
           {data.commonMistakes ? (
             <Reveal delay={0.13}>
               <div className="mt-8 rounded-3xl border border-border bg-white p-7 shadow-sm">
-                <h2 className="text-[24px] font-bold text-brand-900">
+                <h2 className="text-section-title text-brand-900">
                   {data.commonMistakes.title}
                 </h2>
 
@@ -149,7 +149,7 @@ export default function HealthAwareness() {
                   {(data.commonMistakes.items || []).map((item, idx) => (
                     <div
                       key={idx}
-                      className="rounded-2xl border border-border bg-bg px-5 py-4 text-[14px] leading-7 text-text"
+                      className="rounded-2xl border border-border bg-bg px-5 py-4 text-small leading-7 text-text"
                     >
                       {item}
                     </div>
@@ -157,7 +157,7 @@ export default function HealthAwareness() {
                 </div>
 
                 {data.commonMistakes.note ? (
-                  <p className="mt-5 text-[14px] leading-8 text-muted">
+                  <p className="mt-5 text-small leading-8 text-muted">
                     {data.commonMistakes.note}
                   </p>
                 ) : null}
@@ -168,7 +168,7 @@ export default function HealthAwareness() {
           {data.references?.length ? (
             <Reveal delay={0.15}>
               <div className="mt-8 rounded-3xl border border-border bg-white p-7 shadow-sm">
-                <h2 className="text-[24px] font-bold text-brand-900">
+                <h2 className="text-section-title text-brand-900">
                   {t("health.referencesTitle", "Scientific References")}
                 </h2>
 
@@ -176,7 +176,7 @@ export default function HealthAwareness() {
                   {data.references.map((ref, idx) => (
                     <div
                       key={idx}
-                      className="rounded-2xl border border-border bg-bg px-5 py-4 text-[14px] leading-7 text-text"
+                      className="rounded-2xl border border-border bg-bg px-5 py-4 text-small leading-7 text-text"
                     >
                       {ref}
                     </div>

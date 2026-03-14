@@ -26,7 +26,7 @@ function CloseIcon() {
 }
 
 const linkBase =
-  "text-[14px] font-medium text-text hover:text-brand transition px-3 py-2 rounded-full ui-transition";
+  "text-btn font-medium text-text hover:text-brand transition px-3 py-2 rounded-full ui-transition";
 const activeLink = "text-brand bg-brand/10 shadow-sm";
 
 export default function Header() {
@@ -78,11 +78,11 @@ export default function Header() {
               ) : null}
 
               <div className="leading-tight">
-                <div className="text-[14px] font-semibold text-brand-900">
+                <div className="text-btn font-bold text-brand-900">
                   {site?.brand?.name}
                 </div>
                 {site?.brand?.tagline ? (
-                  <div className="text-[12px] text-muted">{site.brand.tagline}</div>
+                  <div className="text-badge text-muted font-normal">{site.brand.tagline}</div>
                 ) : null}
               </div>
             </NavLink>
@@ -108,7 +108,7 @@ export default function Header() {
                 <div className="hidden lg:block">
                   <Button
                     onClick={callNow}
-                    className="rounded-full px-6 py-2.5 text-[13px] font-semibold bg-brand text-white hover:bg-brand-900"
+                    className="rounded-full px-6 py-2.5 text-btn font-semibold bg-brand text-white hover:bg-brand-900"
                   >
                     {t("common.callNow", "Call now")}
                   </Button>
@@ -156,7 +156,7 @@ export default function Header() {
                   <div className="p-3">
                     <Button
                       onClick={callNow}
-                      className="w-full rounded-xl px-5 py-3 text-[14px] font-semibold bg-accent text-white"
+                      className="w-full rounded-xl px-5 py-3 text-btn bg-accent text-white"
                     >
                       {t("common.callNow", "Call now")}
                     </Button>

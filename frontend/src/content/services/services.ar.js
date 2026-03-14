@@ -27,12 +27,6 @@ export const servicesAR = {
                 image: "/images/services/prevention.jpg",
             },
             {
-                id: "long-term-followup",
-                title: "المتابعة طويلة الأمد",
-                desc: "متابعة مستمرة لضمان استقرار الحالة وتحقيق أفضل النتائج.",
-                image: "/images/services/follow-up.jpg",
-            },
-            {
                 id: "preventive-foot-care",
                 title: "الرعاية الوقائية للقدم",
                 desc: "إجراءات وقائية وفحص دوري لتحديد الأقدام المهددة بالإصابة.",
@@ -45,12 +39,6 @@ export const servicesAR = {
                 image: "/images/services/foot-ulcer.jpg",
             },
             {
-                id: "skin-disease-surgery",
-                title: "جراحة أمراض الجلد",
-                desc: "علاج جراحي لبعض أمراض الجلد ومضاعفاتها.",
-                image: "/images/services/skin-surgery.jpg",
-            },
-            {
                 id: "gangrene-surgery",
                 title: "جراحة الغرغرينا",
                 desc: "تدخل جراحي لعلاج الغرغرينا بهدف تجنب البتر.",
@@ -58,7 +46,7 @@ export const servicesAR = {
             },
             {
                 id: "charcot-foot",
-                title: "علاج قدم شاركوت",
+                title: " قدم شاركوت",
                 desc: "علاج تحفظي ومتخصص لحالات قدم شاركوت.",
                 image: "/images/services/charcot.jpg",
             },

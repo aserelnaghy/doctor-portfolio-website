@@ -34,7 +34,7 @@ export default function FinalCtaBand({
           <Grid cols={2} gap="lg" className="items-center">
             <div>
               <Reveal>
-                <h2 className="text-[28px] sm:text-[34px] leading-tight font-bold text-white">
+                <h2 className="text-section-title leading-tight text-white">
                   {title}
                 </h2>
               </Reveal>
@@ -46,7 +46,7 @@ export default function FinalCtaBand({
               </Reveal>
 
               {site?.address ? (
-                <div className="mt-5 text-[12px] text-white/65 leading-6">
+                <div className="mt-5 text-badge text-white/65 font-normal leading-6">
                   {t("common.address", "Address")}: {site.address}
                 </div>
               ) : null}
@@ -57,14 +57,14 @@ export default function FinalCtaBand({
                 <div className="flex flex-wrap gap-3 sm:justify-end">
                   <Button
                     onClick={onCallNow}
-                    className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-teal hover:bg-teal/90 text-white min-h-[44px]"
+                    className="rounded-full px-8 py-3.5 text-btn bg-teal hover:bg-teal/90 text-white min-h-[44px]"
                   >
                     {t("common.callNow", "Call now")}
                   </Button>
 
                   <Button
                     onClick={() => onNavigate("/contact")}
-                    className="rounded-full px-8 py-3.5 text-[14px] font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/15 min-h-[44px]"
+                    className="rounded-full px-8 py-3.5 text-btn bg-white/10 hover:bg-white/15 text-white border border-white/15 min-h-[44px]"
                   >
                     {t("common.contactUs", "Contact us")}
                   </Button>

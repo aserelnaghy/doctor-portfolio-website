@@ -20,7 +20,7 @@ export default function PageHeader({
               </div>
             ) : null}
 
-            <h1 className="text-h2 text-brand-900">{title}</h1>
+            <h1 className="text-page-title text-brand-900">{title}</h1>
 
             {subtitle ? (
               <p className="mt-2 max-w-2xl text-body text-muted">{subtitle}</p>
